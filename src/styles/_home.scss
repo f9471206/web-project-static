@@ -1,0 +1,147 @@
+.home_main {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+.one_post {
+  border-bottom: 0.1px rgb(245, 245, 245) solid;
+  border-right: 0.1px rgb(245, 245, 245) solid;
+  border-left: 0.1px rgb(245, 245, 245) solid;
+  cursor: pointer;
+  padding: 2rem 1.25rem;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: rgb(245, 245, 245);
+  }
+}
+.post_card {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  .user_photo {
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 10px;
+    min-width: 100px;
+    width: 100px;
+    height: 100%;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  //文章主人
+  .user_info {
+    flex: 1;
+    padding: 1.5rem;
+    .post_name {
+      font-weight: 650;
+    }
+    .post_time {
+      font-size: 0.95rem;
+    }
+  }
+}
+.post_content {
+  padding: 1rem;
+
+  //文章文字
+  p {
+    font-size: 1.5rem;
+  }
+  //文章圖片
+  .post_conten_img {
+    border-radius: 25px;
+    overflow: hidden;
+    width: 50%;
+    max-width: 500px;
+    min-width: 250px;
+    img {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+}
+
+//文章icon
+.post_message {
+  display: flex;
+  flex-direction: row;
+  .message_svg {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    img {
+      width: 25px;
+      height: 100%;
+    }
+    p {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding: 0 0.5rem;
+      font-size: 1.5rem;
+    }
+  }
+  .heart_svg {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    i {
+      font-size: 1.5rem;
+    }
+    p {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding: 0 0.5rem;
+      font-size: 1.5rem;
+    }
+  }
+}
+.post_edit_div {
+  div {
+    margin-right: 5px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    transition: 0.25s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: rgb(162, 182, 255);
+    }
+    &:hover i {
+      color: rgb(47, 92, 255);
+    }
+    i {
+      font-size: 1.25rem;
+      color: rgb(74, 74, 74);
+    }
+  }
+}
+
+.edit_div {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: rgb(226, 226, 226);
+  overflow: hidden;
+  user-select: none;
+  div {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    &:hover {
+      background-color: rgb(181, 181, 181);
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .one_post {
+    padding: 1.5rem 0;
+  }
+}

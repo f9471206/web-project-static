@@ -1,0 +1,801 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.home_main {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+.one_post {
+  border-bottom: 0.1px rgb(245, 245, 245) solid;
+  border-right: 0.1px rgb(245, 245, 245) solid;
+  border-left: 0.1px rgb(245, 245, 245) solid;
+  cursor: pointer;
+  padding: 2rem 1.25rem;
+  transition: all 0.2s ease;
+}
+.one_post:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.post_card {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.post_card .user_photo {
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 100px;
+  width: 100px;
+  height: 100%;
+}
+.post_card .user_photo img {
+  width: 100px;
+  height: 100px;
+}
+.post_card .user_info {
+  flex: 1;
+  padding: 1.5rem;
+}
+.post_card .user_info .post_name {
+  font-weight: 650;
+}
+.post_card .user_info .post_time {
+  font-size: 0.95rem;
+}
+
+.post_content {
+  padding: 1rem;
+}
+.post_content p {
+  font-size: 1.5rem;
+}
+.post_content .post_conten_img {
+  border-radius: 25px;
+  overflow: hidden;
+  width: 50%;
+  max-width: 500px;
+  min-width: 250px;
+}
+.post_content .post_conten_img img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.post_message {
+  display: flex;
+  flex-direction: row;
+}
+.post_message .message_svg {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.post_message .message_svg img {
+  width: 25px;
+  height: 100%;
+}
+.post_message .message_svg p {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+}
+.post_message .heart_svg {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.post_message .heart_svg i {
+  font-size: 1.5rem;
+}
+.post_message .heart_svg p {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.post_edit_div div {
+  margin-right: 5px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  transition: 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post_edit_div div:hover {
+  background-color: rgb(162, 182, 255);
+}
+.post_edit_div div:hover i {
+  color: rgb(47, 92, 255);
+}
+.post_edit_div div i {
+  font-size: 1.25rem;
+  color: rgb(74, 74, 74);
+}
+
+.edit_div {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: rgb(226, 226, 226);
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.edit_div div {
+  padding: 1rem 1.5rem;
+  font-size: 1.25rem;
+}
+.edit_div div:hover {
+  background-color: rgb(181, 181, 181);
+}
+
+@media screen and (max-width: 500px) {
+  .one_post {
+    padding: 1.5rem 0;
+  }
+}
+.profile_main {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  width: 60%;
+  justify-content: center;
+}
+.profile_main .profile_user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile_main .profile_user .porfile_photo {
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 3rem 0;
+  max-width: 50vw;
+  max-height: 50vw;
+  width: 500px;
+  height: 500px;
+}
+.profile_main .profile_user .porfile_photo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profile_main .profile_user .profile_button {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background-color: rgb(67, 129, 255);
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  transition: all 0.25s ease;
+}
+.profile_main .profile_user .profile_button:hover {
+  background-color: rgb(25, 102, 255);
+}
+
+.postnew_main {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.postnew_main .postnew_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.postnew_main .postnew_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.postnew_main h2 {
+  font-weight: 600;
+  padding-left: 2rem;
+}
+
+.con {
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 100%;
+  min-height: 200px;
+  outline: none;
+}
+
+.con:empty:before {
+  content: "說點啥好呢？";
+  color: gray;
+}
+
+.newpost_bottom {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 3rem;
+}
+.newpost_bottom .post_image_icon {
+  padding: 0.5rem 2rem;
+  flex: 1;
+}
+.newpost_bottom .post_image_icon img {
+  width: 50px;
+}
+.newpost_bottom .new_post_button {
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  flex: 2;
+}
+.newpost_bottom .new_post_button button {
+  padding: 0 2rem;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  border-radius: 40px;
+  cursor: default;
+  background-color: rgb(65, 112, 255);
+  opacity: 0.7;
+  transition: 0.25s all ease;
+}
+.newpost_bottom .new_post_button .buttom_change {
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.25s all ease;
+}
+.newpost_bottom .new_post_button .buttom_change:hover {
+  background-color: rgb(38, 92, 255);
+}
+
+.showimage {
+  overflow: hidden;
+  border-radius: 20px;
+  max-width: 500px;
+  position: relative;
+}
+.showimage img {
+  width: 100%;
+  height: 100%;
+}
+.showimage .circle_svg {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  border-radius: 50%;
+  padding: 5px;
+  transition: all 0.2s ease-in;
+  background-color: rgb(140, 140, 140);
+  opacity: 0.8;
+  cursor: pointer;
+}
+.showimage .circle_svg:hover {
+  opacity: 0.7;
+}
+.showimage .circle_svg img:hover {
+  transition: all 0.2s ease-in;
+  opacity: 0.7;
+}
+
+.one_post_detail {
+  border-bottom: 0.1px rgb(245, 245, 245) solid;
+  border-right: 0.1px rgb(245, 245, 245) solid;
+  border-left: 0.1px rgb(245, 245, 245) solid;
+  padding: 2rem 1.25rem;
+}
+
+.heart_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: red;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.heart_div:hover {
+  color: rgb(255, 126, 126);
+}
+.heart_div i {
+  font-size: 1.5rem;
+}
+
+.unheart_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.unheart_div:hover {
+  color: red;
+}
+.unheart_div i {
+  font-size: 1.5rem;
+}
+
+.one_post_edit div {
+  margin-right: 5px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  transition: 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.one_post_edit div:hover {
+  background-color: rgb(162, 182, 255);
+}
+.one_post_edit div:hover i {
+  color: rgb(47, 92, 255);
+}
+.one_post_edit div i {
+  font-size: 1.25rem;
+  color: rgb(74, 74, 74);
+}
+
+@media screen and (max-width: 500px) {
+  .one_post_detail {
+    padding: 1.5rem 0;
+  }
+}
+.username_div,
+.userphoto_div {
+  padding: 3rem;
+}
+.username_div h2,
+.username_div h2,
+.userphoto_div h2,
+.userphoto_div h2 {
+  border-left: 8px solid rgb(129, 129, 255);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+.username_div input,
+.userphoto_div input {
+  width: 100%;
+  font-size: 2rem;
+  border-radius: 3px;
+  padding-left: 10px;
+  border: 1px solid gray;
+}
+.username_div .uploadimg,
+.userphoto_div .uploadimg {
+  border: 0.5px solid black;
+  display: block;
+  margin: auto;
+  max-width: 650px;
+  max-height: 650px;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.username_div .uploadimg img,
+.userphoto_div .uploadimg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.userphoto_div {
+  padding-bottom: 1rem;
+}
+
+.button_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+}
+.button_div button {
+  max-width: 200px;
+  padding: 0.25rem 1rem;
+  border: 3px solid rgb(110, 110, 253);
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.25s ease;
+}
+.button_div button:hover {
+  background-color: rgb(110, 110, 253);
+  color: white;
+}
+
+.sudmit_div {
+  display: flex;
+  padding: 5rem 2rem;
+}
+.sudmit_div button {
+  width: 70%;
+  padding: 0.5rem 0;
+  margin: auto;
+  border: 0;
+  border-radius: 5px;
+  background-color: rgb(110, 110, 253);
+  color: white;
+  transition: all 0.2s ease;
+}
+.sudmit_div button:hover {
+  background-color: rgb(75, 75, 255);
+}
+
+.reply_main {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  position: relative;
+}
+.reply_main .reply_left {
+  min-width: 75px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 10px;
+}
+.reply_main .reply_left img {
+  min-width: 75px;
+  width: 100%;
+  height: 100%;
+}
+.reply_main .reply_right {
+  border-radius: 10px;
+  display: flex;
+  flex: auto;
+  padding: 0 1rem;
+  width: 75%;
+}
+.reply_main .reply_right .reply_content {
+  padding: 5rem 0;
+  height: 100%;
+  padding: 10px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+}
+.reply_main .reply_right .reply_content:empty:before {
+  content: "發布你的留言";
+  color: gray;
+}
+.reply_main .newRplybtn {
+  height: 50px;
+  min-width: 120px;
+  margin: 1rem 0;
+  padding: 0 2rem;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  border-radius: 40px;
+  cursor: default;
+  background-color: rgb(65, 112, 255);
+  opacity: 0.5;
+  transition: 0.25s all ease;
+  align-self: flex-end;
+  width: 190px;
+  max-width: 250px;
+}
+.reply_main .buttom_change {
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.25s all ease;
+}
+.reply_main .buttom_change:hover {
+  background-color: rgb(38, 92, 255);
+}
+
+@media screen and (max-width: 560px) {
+  .replyPost_main {
+    flex-direction: column;
+  }
+  .replyPost_main .reply_right {
+    width: 100%;
+  }
+  .replyPost_main .reply_right .reply_content {
+    width: 100%;
+  }
+  .replyPost_main button {
+    width: 100%;
+  }
+}
+.replys_rigth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  flex: auto;
+  padding: 1rem 0;
+}
+.replys_rigth h2 {
+  padding: 0.5rem 1rem 0 1rem;
+  font-weight: 600;
+}
+.replys_rigth p {
+  padding: 0 1rem;
+}
+.replys_rigth .reply_edit_text {
+  padding: 0.25rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border: 5px solid rgb(129, 129, 255);
+  border-radius: 10px;
+  outline: none;
+}
+.replys_rigth .reply_edit_text:focus {
+  outline: none;
+}
+.replys_rigth .delete_reply_text {
+  padding: 0.25rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border: 5px solid rgb(129, 129, 255);
+  border-radius: 10px;
+}
+.replys_rigth .replys_p {
+  padding: 0.25rem 1rem;
+  font-size: 1.5rem;
+}
+.replys_rigth .replys_like {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.replys_rigth .replys_like .unclickLike {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.replys_rigth .replys_like .unclickLike:hover {
+  color: red;
+}
+.replys_rigth .replys_like .unclickLike i {
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.25s ease;
+}
+.replys_rigth .replys_like .unclickLike p {
+  margin: auto 0.75rem;
+  font-size: 1.5rem;
+  transition: all 0.25s ease;
+}
+.replys_rigth .replys_like .clickLike {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.replys_rigth .replys_like .clickLike:hover {
+  color: rgb(255, 126, 126);
+}
+.replys_rigth .replys_like .clickLike i {
+  font-size: 1.5rem;
+  color: red;
+}
+.replys_rigth .replys_like .clickLike p {
+  margin: auto 0.75rem;
+  font-size: 1.5rem;
+  color: red;
+}
+
+.modal-footer button {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 40px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+.overlay .modalContainer {
+  max-width: 600px;
+  width: 100%;
+  max-height: 100%;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+}
+.overlay .modalContainer .closure {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5rem;
+}
+.overlay .modalContainer h3 {
+  text-align: center;
+}
+.overlay .modalContainer .modalTextContent {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 100%;
+  min-height: 200px;
+  outline: none;
+}
+.overlay .modalContainer .modalimage_div {
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+.overlay .modalContainer .modalimage_div .circle_image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background-color: rgb(194, 194, 194);
+  border-radius: 50%;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  transition: 0.25s all ease;
+}
+.overlay .modalContainer .modalimage_div .circle_image:hover {
+  opacity: 0.85;
+}
+.overlay .modalContainer .modalimage_div .post_image {
+  width: 100%;
+  max-height: 55vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.overlay .modalContainer .edit_uploadImage {
+  padding: 1rem 0;
+}
+.overlay .modalContainer .edit_uploadImage img {
+  width: 30px;
+  height: 30px;
+}
+.overlay .modalContainer button {
+  border-radius: 10px;
+  background-color: rgb(165, 165, 255);
+  border: none;
+  padding: 0.25rem;
+  color: white;
+  font-weight: 400;
+  font-size: 1.25rem;
+  transition: all 0.25s ease;
+}
+.overlay .modalContainer button:hover {
+  background-color: rgb(127, 127, 255);
+}
+
+.deleteModale_background {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.deleteModale_background .deleteModale_container {
+  max-width: 600px;
+  width: 100%;
+  max-height: 100%;
+  padding: 1rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+.deleteModale_background .deleteModale_container .close_delete_modale {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 20px;
+  font-size: 1.5rem;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.deleteModale_background .deleteModale_container h3 {
+  padding: 0.5rem 0 1rem 0;
+  text-align: center;
+}
+.deleteModale_background .deleteModale_container p {
+  padding: 0.5rem 1rem;
+  min-height: 10vh;
+  font-size: 1.5rem;
+}
+.deleteModale_background .deleteModale_container .delete_image_div {
+  max-width: 500px;
+  background-color: black;
+  border-radius: 0px;
+}
+.deleteModale_background .deleteModale_container .delete_image_div img {
+  width: 100%;
+  height: 50vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.deleteModale_background .deleteModale_container .delte_submit_div {
+  padding: 1rem 0 0.5rem 0;
+}
+.deleteModale_background .deleteModale_container .delte_submit_div .delete_button {
+  width: 100%;
+  border: none;
+  background-color: rgb(109, 109, 255);
+  padding: 0.25rem 0;
+  color: white;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  transition: all 0.25s ease;
+}
+.deleteModale_background .deleteModale_container .delte_submit_div .delete_button:hover {
+  background-color: rgb(68, 68, 255);
+}
+
+.one_deleteModal_bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.one_deleteModal_bg .one_deleteModal_main {
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-color: white;
+  width: 600px;
+  max-width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.one_deleteModal_bg .one_deleteModal_main h3 {
+  text-align: center;
+  padding: 1rem 0;
+}/*# sourceMappingURL=style.css.map */

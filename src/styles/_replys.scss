@@ -1,0 +1,95 @@
+.replys_rigth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  flex: auto;
+  padding: 1rem 0;
+  h2 {
+    padding: 0.5rem 1rem 0 1rem;
+    font-weight: 600;
+  }
+  p {
+    padding: 0 1rem;
+  }
+  //編輯後出現的DIV
+  .reply_edit_text {
+    padding: 0.25rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border: 5px solid rgb(129, 129, 255);
+    border-radius: 10px;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  //愈要刪除的content
+  .delete_reply_text {
+    padding: 0.25rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border: 5px solid rgb(129, 129, 255);
+    border-radius: 10px;
+  }
+
+  .replys_p {
+    padding: 0.25rem 1rem;
+    font-size: 1.5rem;
+  }
+  .replys_like {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    //還沒按過喜歡
+    .unclickLike {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        color: red;
+      }
+      i {
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all 0.25s ease;
+      }
+      p {
+        margin: auto 0.75rem;
+        font-size: 1.5rem;
+        transition: all 0.25s ease;
+      }
+    }
+
+    //已經按過喜歡
+    .clickLike {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        color: rgb(255, 126, 126);
+      }
+      i {
+        font-size: 1.5rem;
+        color: red;
+      }
+      p {
+        margin: auto 0.75rem;
+        font-size: 1.5rem;
+        color: red;
+      }
+    }
+  }
+}
+
+.modal-footer {
+  button {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 1.25rem;
+    border-radius: 40px;
+  }
+}
