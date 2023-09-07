@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:8080/api/user/profile/";
+const API_URL = "https://web-project-service.onrender.com/api/user/profile/";
 
 class UserProfile {
   //取得個人資料
