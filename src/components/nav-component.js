@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
-const NavComponent = () => {
-  let [_id, set_id] = useState(""); //用戶_ID
-
+const NavComponent = ({ _id, set_id }) => {
   const handleLogout = () => {
     AuthService.logout();
+    set_id("");
     window.alert("成功登出");
   };
-
-  useEffect(() => {
-    if (AuthService.getCurrentUser()) {
-      set_id(AuthService.getCurrentUser().user._id);
-    }
-  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

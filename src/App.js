@@ -7,18 +7,27 @@ import RegisterComponent from "./components/register-component";
 import OnepostComponent from "./components/onepost-component";
 import EditprofileComponent from "./components/editprofile-component";
 import "./styles/style.css";
+import AuthService from "./services/auth.service";
+import { useEffect, useState } from "react";
 
 function App() {
+  let [_id, set_id] = useState(""); //用戶_ID
+
+  useEffect(() => {
+    if (AuthService.getCurrentUser()) {
+      set_id(AuthService.getCurrentUser().user._id);
+    }
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="home" element={<Home />} />
-          <Route path="profile/:_id" element={<ProfileComponent />} />
-          <Route path="profile/edit/:_id" element={<EditprofileComponent />} />
-          <Route path="home/:_id" element={<OnepostComponent />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<RegisterComponent />} />
+        <Route path="/" element={<Layout _id={_id} set_id={set_id} />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile/:_id" element={<ProfileComponent />} />
+          <Route path="/profile/edit/:_id" element={<EditprofileComponent />} />
+          <Route path="/home/:_id" element={<OnepostComponent />} />
+          <Route path="/login" element={<Login _id={_id} set_id={set_id} />} />
+          <Route path="/register" element={<RegisterComponent />} />
         </Route>
       </Routes>
     </BrowserRouter>

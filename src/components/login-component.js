@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
-const LoginComponent = () => {
+const LoginComponent = ({ _id, set_id }) => {
   const nagivate = useNavigate();
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -19,6 +19,9 @@ const LoginComponent = () => {
     try {
       let response = await AuthService.login(email, password);
       localStorage.setItem("user", JSON.stringify(response.data));
+      if (AuthService.getCurrentUser()) {
+        set_id(AuthService.getCurrentUser().user._id);
+      }
       window.alert("登入成功。您現在將被重新導向首頁。");
       nagivate("/");
     } catch (e) {
