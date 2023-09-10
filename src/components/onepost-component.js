@@ -9,6 +9,7 @@ import Calculate from "./showtime";
 import AuthService from "../services/auth.service";
 import UserPostService from "../services/userpost.service";
 import messageSvg from "../image/message/message.svg"; //回復icon
+import defaulephoto from "../image/user_photo/userdef.svg.jpg";
 
 function OnepostComponent() {
   let [user_id, setUser_id] = useState(""); //登入後的ID
@@ -99,7 +100,10 @@ function OnepostComponent() {
         <div className="one_post_detail">
           <div className="post_card">
             <div className="user_photo">
-              {postData.author.photo && (
+              {postData.author.photo && postData.author.photo == "" && (
+                <img src={defaulephoto} alt="" />
+              )}
+              {postData.author.photo && postData.author.photo != "" && (
                 <img src={postData.author.photo} alt="" />
               )}
             </div>

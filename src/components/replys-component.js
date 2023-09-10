@@ -3,6 +3,7 @@ import UserPostService from "../services/userpost.service";
 import HomeService from "../services/home.service";
 import AuthService from "../services/auth.service";
 import Calculate from "./showtime";
+import defaulephoto from "../image/user_photo/userdef.svg.jpg";
 import { useParams } from "react-router-dom";
 
 const ReplysComponent = ({ newReply }) => {
@@ -139,7 +140,12 @@ const ReplysComponent = ({ newReply }) => {
             <div key={data._id} className="reply_main">
               <div className="reply_left">
                 <div className="reply_photo">
-                  <img src={data.user.photo} alt="" />
+                  {data.user.photo && data.user.photo == "" && (
+                    <img src={defaulephoto} alt="" />
+                  )}
+                  {data.user.photo && data.user.photo != "" && (
+                    <img src={data.user.photo} alt="" />
+                  )}
                 </div>
               </div>
               <div className="replys_rigth">

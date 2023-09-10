@@ -4,6 +4,7 @@ import AuthService from "../services/auth.service";
 import PostEditComponent from "./postEdit-component";
 import DeleteModal from "./deleteModal-conponent";
 import Calculate from "./showtime";
+import defaulephoto from "../image/user_photo/userdef.svg.jpg";
 import messageSvg from "../image/message/message.svg"; //回復icon
 import HomeService from "../services/home.service";
 import PostnewComponent from "./postnew-component";
@@ -133,7 +134,12 @@ const Home = () => {
             >
               <div className="post_card">
                 <div className="user_photo">
-                  <img src={data.author.photo} alt="" />
+                  {data.author.photo && data.author.photo == "" && (
+                    <img src={defaulephoto} alt="" />
+                  )}
+                  {data.author.photo && data.author.photo != "" && (
+                    <img src={data.author.photo} alt="" />
+                  )}
                 </div>
                 <div className="user_info">
                   <h2 className="post_name">

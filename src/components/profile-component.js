@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import defaulephoto from "../image/user_photo/ktjreljdflgfg.jpg";
+import defaulephoto from "../image/user_photo/userdef.svg.jpg";
 import { useParams, useNavigate } from "react-router-dom";
 import UserProfile from "../services/userprofile.service";
 import { format } from "date-fns";
@@ -33,7 +33,12 @@ const ProfileComponent = () => {
             <div key={data._id} className="profile_main">
               <div className="profile_user">
                 <div className="porfile_photo">
-                  <img src={data.photo} alt="" />
+                  {data.photo && data.photo == "" && (
+                    <img src={defaulephoto} alt="" />
+                  )}
+                  {data.photo && data.photo != "" && (
+                    <img src={data.photo} alt="" />
+                  )}
                 </div>
                 <h2>{data.username}</h2>
                 <h4>{format(new Date(data.date), "yyyy-MM-dd")}</h4>
