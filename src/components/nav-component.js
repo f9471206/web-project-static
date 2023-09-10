@@ -50,16 +50,15 @@ const NavComponent = ({ _id, set_id }) => {
             )}
             {_id && (
               <li className="nav-item">
-                <Link onClick={handleLogout} className="nav-link" to="/">
-                  登出
+                <Link className="nav-link" to={`/profile/${_id}`}>
+                  個人頁面
                 </Link>
               </li>
             )}
-
             {_id && (
               <li className="nav-item">
-                <Link className="nav-link" to={`/profile/${_id}`}>
-                  個人頁面
+                <Link onClick={handleLogout} className="nav-link" to="/">
+                  登出
                 </Link>
               </li>
             )}

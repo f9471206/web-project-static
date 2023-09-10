@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
 const RegisterComponent = () => {
@@ -7,6 +7,9 @@ const RegisterComponent = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
+
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -19,7 +22,8 @@ const RegisterComponent = () => {
   const hanleRegister = () => {
     AuthService.register(username, email, password)
       .then(() => {
-        window.alert("success");
+        window.alert("註冊成功");
+        navigate("/login");
       })
       .catch((e) => {
         setMessage(e.response.data);
