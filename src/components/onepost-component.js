@@ -103,7 +103,7 @@ function OnepostComponent() {
               {postData.author.photo && postData.author.photo == "" && (
                 <img src={defaulephoto} alt="" />
               )}
-              {postData.author.photo && postData.author.photo != "" && (
+              {!postData.author.photo && (
                 <img src={postData.author.photo} alt="" />
               )}
             </div>

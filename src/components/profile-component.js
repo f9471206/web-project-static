@@ -36,9 +36,7 @@ const ProfileComponent = () => {
                   {data.photo && data.photo == "" && (
                     <img src={defaulephoto} alt="" />
                   )}
-                  {data.photo && data.photo != "" && (
-                    <img src={data.photo} alt="" />
-                  )}
+                  {!data.photo && <img src={data.photo} alt="" />}
                 </div>
                 <h2>{data.username}</h2>
                 <h4>{format(new Date(data.date), "yyyy-MM-dd")}</h4>

@@ -143,9 +143,7 @@ const ReplysComponent = ({ newReply }) => {
                   {data.user.photo && data.user.photo == "" && (
                     <img src={defaulephoto} alt="" />
                   )}
-                  {data.user.photo && data.user.photo != "" && (
-                    <img src={data.user.photo} alt="" />
-                  )}
+                  {!data.user.photo && <img src={data.user.photo} alt="" />}
                 </div>
               </div>
               <div className="replys_rigth">
