@@ -618,6 +618,11 @@ body {
   border-radius: 40px;
 }
 
+.reply_photo img {
+  width: 100%;
+  height: 100%;
+}
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
