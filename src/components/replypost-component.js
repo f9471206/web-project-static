@@ -32,7 +32,7 @@ const ReplyComponent = ({ _id, setNewReply }) => {
       <div className="reply_main replyPost_main">
         <div className="reply_left">
           {AuthService.getCurrentUser() &&
-            AuthService.getCurrentUser().user.photo == "" && (
+            !AuthService.getCurrentUser().user.photo && (
               <img src={DefaultPhoto} alt="" />
             )}
           {AuthService.getCurrentUser() &&
