@@ -100,10 +100,8 @@ function OnepostComponent() {
         <div className="one_post_detail">
           <div className="post_card">
             <div className="user_photo">
-              {postData.author.photo && postData.author.photo == "" && (
-                <img src={defaulephoto} alt="" />
-              )}
-              {!postData.author.photo && (
+              {!postData.author.photo && <img src={defaulephoto} alt="" />}
+              {postData.author.photo && (
                 <img src={postData.author.photo} alt="" />
               )}
             </div>
