@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import defaulephoto from "../image/user_photo/userdef.svg.jpg";
+import defaulephoto from "../image/user_photo/userdef.svg";
 import { useParams, useNavigate } from "react-router-dom";
 import UserProfile from "../services/userprofile.service";
 import { format } from "date-fns";

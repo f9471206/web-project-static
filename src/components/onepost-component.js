@@ -9,7 +9,7 @@ import Calculate from "./showtime";
 import AuthService from "../services/auth.service";
 import UserPostService from "../services/userpost.service";
 import messageSvg from "../image/message/message.svg"; //回復icon
-import defaulephoto from "../image/user_photo/userdef.svg.jpg";
+import defaulephoto from "../image/user_photo/userdef.svg";
 
 function OnepostComponent() {
   let [user_id, setUser_id] = useState(""); //登入後的ID

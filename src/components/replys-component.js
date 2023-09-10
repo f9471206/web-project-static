@@ -3,7 +3,7 @@ import UserPostService from "../services/userpost.service";
 import HomeService from "../services/home.service";
 import AuthService from "../services/auth.service";
 import Calculate from "./showtime";
-import defaulephoto from "../image/user_photo/userdef.svg.jpg";
+import defaulephoto from "../image/user_photo/userdef.svg";
 import { useParams } from "react-router-dom";
 
 const ReplysComponent = ({ newReply }) => {

@@ -4,7 +4,7 @@ import AuthService from "../services/auth.service";
 import PostEditComponent from "./postEdit-component";
 import DeleteModal from "./deleteModal-conponent";
 import Calculate from "./showtime";
-import defaulephoto from "../image/user_photo/userdef.svg.jpg";
+import defaulephoto from "../image/user_photo/userdef.svg";
 import messageSvg from "../image/message/message.svg"; //回復icon
 import HomeService from "../services/home.service";
 import PostnewComponent from "./postnew-component";
