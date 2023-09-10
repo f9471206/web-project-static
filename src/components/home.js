@@ -134,10 +134,8 @@ const Home = () => {
             >
               <div className="post_card">
                 <div className="user_photo">
-                  {data.author.photo && data.author.photo == "" && (
-                    <img src={defaulephoto} alt="" />
-                  )}
-                  {!data.author.photo && <img src={data.author.photo} alt="" />}
+                  {!data.author.photo && <img src={defaulephoto} alt="" />}
+                  {data.author.photo && <img src={data.author.photo} alt="" />}
                 </div>
                 <div className="user_info">
                   <h2 className="post_name">
