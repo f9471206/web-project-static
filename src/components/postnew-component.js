@@ -4,8 +4,6 @@ import AuthService from "../services/auth.service";
 import imageIcon from "../image/message/image.svg";
 import circle from "../image/message/circle.svg";
 
-import defaultImg from "../image/user_photo/IMG_3644.png";
-
 const PostnewComponent = ({ result, setResult }) => {
   //連結input file
   const inputRef = useRef(null);
