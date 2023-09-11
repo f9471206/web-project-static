@@ -137,50 +137,52 @@ const ReplysComponent = ({ newReply }) => {
       {postData &&
         postData.reply.map((data) => {
           if (!data.user)
-            <div key={data._id} className="reply_main">
-              <div className="reply_left">
-                <div className="reply_photo">
-                  <img src={defaulephoto} alt="" />
+            return (
+              <div key={data._id} className="reply_main">
+                <div className="reply_left">
+                  <div className="reply_photo">
+                    <img src={defaulephoto} alt="" />
+                  </div>
+                </div>
+                <div className="replys_rigth">
+                  <h2>已經刪除帳號</h2>
+                  <p>{Calculate.calculateTime(data.date)}</p>
+                  {replyContentID != data._id && (
+                    <p
+                      className={
+                        deleteChack && data._id == deleteID
+                          ? "replys_p delete_reply_text"
+                          : "replys_p"
+                      }
+                    >
+                      {data.content}
+                    </p>
+                  )}
+                  <div className="replys_like">
+                    {data.like.includes(userId) && (
+                      <div
+                        id={data._id}
+                        onClick={handleLike}
+                        className="clickLike"
+                      >
+                        <i className="fa-regular fa-heart"></i>
+                        <p>{data.like.length}</p>
+                      </div>
+                    )}
+                    {!data.like.includes(userId) && (
+                      <div
+                        id={data._id}
+                        onClick={handleLike}
+                        className="unclickLike"
+                      >
+                        <i className="fa-regular fa-heart"></i>
+                        <p>{data.like.length}</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-              <div className="replys_rigth">
-                <h2>已經刪除帳號</h2>
-                <p>{Calculate.calculateTime(data.date)}</p>
-                {replyContentID != data._id && (
-                  <p
-                    className={
-                      deleteChack && data._id == deleteID
-                        ? "replys_p delete_reply_text"
-                        : "replys_p"
-                    }
-                  >
-                    {data.content}
-                  </p>
-                )}
-                <div className="replys_like">
-                  {data.like.includes(userId) && (
-                    <div
-                      id={data._id}
-                      onClick={handleLike}
-                      className="clickLike"
-                    >
-                      <i className="fa-regular fa-heart"></i>
-                      <p>{data.like.length}</p>
-                    </div>
-                  )}
-                  {!data.like.includes(userId) && (
-                    <div
-                      id={data._id}
-                      onClick={handleLike}
-                      className="unclickLike"
-                    >
-                      <i className="fa-regular fa-heart"></i>
-                      <p>{data.like.length}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>;
+            );
           return (
             <div key={data._id} className="reply_main">
               <div className="reply_left">
