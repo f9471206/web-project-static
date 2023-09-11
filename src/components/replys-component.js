@@ -145,7 +145,9 @@ const ReplysComponent = ({ newReply }) => {
                 </div>
               </div>
               <div className="replys_rigth">
-                <h2>{data.user.username}</h2>
+                <h2>
+                  {data.user.username ? data.user.username : "已刪除帳號"}
+                </h2>
                 <p>{Calculate.calculateTime(data.date)}</p>
 
                 {replyContentID != data._id && (
