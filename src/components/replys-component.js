@@ -140,6 +140,8 @@ const ReplysComponent = ({ newReply }) => {
             <div key={data._id} className="reply_main">
               <div className="reply_left">
                 <div className="reply_photo">
+                  {!data.user.photo ||
+                    (!data.user && <img src={defaulephoto} alt="" />)}
                   {data.user.photo ? (
                     <img src={data.user.photo} alt="" />
                   ) : (
