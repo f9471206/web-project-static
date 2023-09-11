@@ -3,9 +3,12 @@ import defaulephoto from "../image/user_photo/userdef.svg";
 import { useParams, useNavigate } from "react-router-dom";
 import UserProfile from "../services/userprofile.service";
 import { format } from "date-fns";
+import DeleteuserComponent from "./deleteuser-component";
 
 const ProfileComponent = () => {
   let { _id } = useParams();
+
+  let [deleteUserModal, setDeleteUserModal] = useState(false);
 
   let [profileData, setProfileData] = useState();
 
@@ -13,6 +16,10 @@ const ProfileComponent = () => {
 
   const handleEdite = () => {
     navigate("/profile/edit/" + _id);
+  };
+
+  const handleDlete = () => {
+    setDeleteUserModal(true);
   };
 
   useEffect(() => {
@@ -41,6 +48,16 @@ const ProfileComponent = () => {
                 <button onClick={handleEdite} className="profile_button">
                   編輯個人資料
                 </button>
+                <br />
+                <button onClick={handleDlete} className="profile_delete">
+                  刪除帳號
+                </button>
+                {deleteUserModal && (
+                  <DeleteuserComponent
+                    deleteUserModal={deleteUserModal}
+                    setDeleteUserModal={setDeleteUserModal}
+                  />
+                )}
               </div>
             </div>
           );

@@ -54,6 +54,25 @@ class UserProfile {
       }
     );
   }
+
+  //刪除個人資料
+  deleteUser(password) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.post(
+      API_URL + "deleteuser/",
+      { password },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  }
 }
 
 const userProfile = new UserProfile();
