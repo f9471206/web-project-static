@@ -8,6 +8,7 @@ import OnepostComponent from "./components/onepost-component";
 import EditprofileComponent from "./components/editprofile-component";
 import "./styles/style.css";
 import AuthService from "./services/auth.service";
+import WelcomepageComponent from "./components/welcomepage-component";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout _id={_id} set_id={set_id} />}>
+          <Route path="/" element={<WelcomepageComponent />} />
           <Route path="/home" element={<Home />} />
           <Route
             path="/profile/:_id"
