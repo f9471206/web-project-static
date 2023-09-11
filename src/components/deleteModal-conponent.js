@@ -54,11 +54,7 @@ const DeleteModal = ({
         <p>{editData.content}</p>
         {editData.image && (
           <div className="delete_image_div">
-            <img
-              className="delete_image"
-              src={require(`../image/post_content/${editData.image}`)}
-              alt=""
-            />
+            <img className="delete_image" src={editData.image} alt="" />
           </div>
         )}
         <div className="delte_submit_div">
