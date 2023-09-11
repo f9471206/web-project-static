@@ -5,7 +5,7 @@ import UserProfile from "../services/userprofile.service";
 import { format } from "date-fns";
 import DeleteuserComponent from "./deleteuser-component";
 
-const ProfileComponent = () => {
+const ProfileComponent = ({ user_id, setuser_id }) => {
   let { _id } = useParams();
 
   let [deleteUserModal, setDeleteUserModal] = useState(false);
@@ -56,6 +56,8 @@ const ProfileComponent = () => {
                   <DeleteuserComponent
                     deleteUserModal={deleteUserModal}
                     setDeleteUserModal={setDeleteUserModal}
+                    user_id={user_id}
+                    setuser_id={setuser_id}
                   />
                 )}
               </div>

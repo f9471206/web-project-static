@@ -23,7 +23,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout _id={_id} set_id={set_id} />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/profile/:_id" element={<ProfileComponent />} />
+          <Route
+            path="/profile/:_id"
+            element={<ProfileComponent user_id={_id} setuser_id={set_id} />}
+          />
           <Route path="/profile/edit/:_id" element={<EditprofileComponent />} />
           <Route path="/home/:_id" element={<OnepostComponent />} />
           <Route path="/login" element={<Login _id={_id} set_id={set_id} />} />

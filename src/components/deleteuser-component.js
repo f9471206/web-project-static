@@ -3,7 +3,12 @@ import UserProfile from "../services/userprofile.service";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
-const DeleteuserComponent = ({ deleteUserModal, setDeleteUserModal }) => {
+const DeleteuserComponent = ({
+  deleteUserModal,
+  setDeleteUserModal,
+  user_id,
+  setuser_id,
+}) => {
   let [password, setPassword] = useState("");
 
   let [showMes, setShowMes] = useState("");
@@ -25,6 +30,7 @@ const DeleteuserComponent = ({ deleteUserModal, setDeleteUserModal }) => {
       .then((d) => {
         window.alert("帳號已刪除");
         AuthService.logout();
+        setuser_id("");
         navigate("/");
       })
       .catch((err) => {
