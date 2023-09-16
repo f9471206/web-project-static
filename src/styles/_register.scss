@@ -3,12 +3,13 @@
   background-color: white;
   padding: 3rem;
   border-radius: 20px;
-  margin: auto;
   width: 570px;
   max-width: 100%;
-  top: 30%;
+  top: 50%;
+  left: 50%;
   position: relative;
   box-shadow: 0px 0px 18px 0px rgb(0, 0, 0, 0.75);
+  transform: translate(-50%, -50%);
   .register_close_button {
     position: absolute;
     top: 1.25rem;
@@ -70,5 +71,12 @@
     border-radius: 6px;
     background-color: rgb(177, 177, 177);
     cursor: default;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .register_main {
+    height: 100%;
+    border-radius: 0;
   }
 }
