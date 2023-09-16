@@ -13,6 +13,8 @@ const DeleteuserComponent = ({
 
   let [showMes, setShowMes] = useState("");
 
+  let [deleteLoading, setDeleteLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleModalClose = () => {
@@ -25,7 +27,9 @@ const DeleteuserComponent = ({
   };
 
   const handleDelSumbit = () => {
+    if (deleteLoading) return;
     setShowMes("");
+    setDeleteLoading(true);
     UserProfile.deleteUser(password)
       .then((d) => {
         window.alert("帳號已刪除");
@@ -36,43 +40,48 @@ const DeleteuserComponent = ({
       .catch((err) => {
         if (err.response.data.password == false) {
           setShowMes("密碼錯誤");
+          setDeleteLoading(false);
         }
       });
   };
 
   return (
-    <div
-      onClick={() => {
-        setDeleteUserModal(false);
-      }}
-      className="userDeleteBg"
-    >
-      <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        className="userDelete"
-      >
+    <div className="userDeleteBg">
+      <div className="userDelete">
         <label htmlFor="">
           請輸入密碼 <span style={{ color: "red" }}>{showMes}</span>
         </label>
 
         <input onChange={handlePassword} type="text" />
         <div className="modal-footer">
-          <button
-            onClick={handleModalClose}
-            type="button"
-            className="btn btn-secondary m-1"
-          >
-            返回
-          </button>
-          <button
-            onClick={handleDelSumbit}
-            type="button"
-            className="btn btn-danger m-1"
-          >
-            確定刪除
-          </button>
+          {!deleteLoading ? (
+            <>
+              {" "}
+              <button
+                onClick={handleModalClose}
+                type="button"
+                className="btn btn-secondary m-1"
+              >
+                返回
+              </button>
+              <button
+                onClick={handleDelSumbit}
+                type="button"
+                className="btn btn-danger m-1"
+              >
+                確定刪除
+              </button>
+            </>
+          ) : (
+            <button className="userdeleteLoading m-1">
+              <span className="preloader">
+                <div className="circ1"></div>
+                <div className="circ2"></div>
+                <div className="circ3"></div>
+                <div className="circ4"></div>
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </div>

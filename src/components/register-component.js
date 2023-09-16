@@ -92,7 +92,10 @@ const RegisterComponent = ({ setRegisterModal, setLoginModal }) => {
               <span>註冊會員</span>
             </button>
           ) : (
-            <button className="register_button_cursor_none">
+            <button
+              style={{ marginTop: "1rem" }}
+              className="register_button_cursor_none"
+            >
               <span className="preloader">
                 <div className="circ1"></div>
                 <div className="circ2"></div>

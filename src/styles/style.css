@@ -1012,6 +1012,7 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .userDeleteBg .userDelete {
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
   background-color: white;
   margin: auto;
   width: 500px;
@@ -1027,6 +1028,32 @@ body {
   font-size: 1rem;
   border-radius: 5px;
   padding: 0.25rem 1rem;
+}
+.userDeleteBg .userDelete .modal-footer .userdeleteLoading {
+  border: none;
+  background-color: rgb(184, 184, 184);
+  cursor: default;
+}
+.userDeleteBg .userDelete .modal-footer .userdeleteLoading .preloader > div {
+  margin: 2px;
+  background-color: #e6e6e6;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: stretchdelay 0.7s infinite ease-in-out;
+}
+.userDeleteBg .userDelete .modal-footer .userdeleteLoading .preloader .circ1 {
+  animation-delay: 0;
+}
+.userDeleteBg .userDelete .modal-footer .userdeleteLoading .preloader .circ2 {
+  animation-delay: 0.1s;
+}
+.userDeleteBg .userDelete .modal-footer .userdeleteLoading .preloader .circ3 {
+  animation-delay: 0.2s;
+}
+.userDeleteBg .userDelete .modal-footer .userdeleteLoading .preloader .circ4 {
+  animation-delay: 0.3s;
 }
 
 .welcomeimage {
