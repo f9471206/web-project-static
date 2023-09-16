@@ -14,15 +14,11 @@ const WelcomepageComponent = () => {
         <div className="p-5 mb-4 bg-light rounded-3">
           <div className="container-fluid py-5">
             <h1 className="display-5 fw-bold">社群系統</h1>
-            <p className="col-md-8 fs-4">
+            <p className="col-md-12 fs-4">
               本系統使用 React.js 作為前端框架，Node.js、MongoDB
               作為後端服務器。
             </p>
-            <ul style={{ fontSize: "1.5rem" }}>
-              <li>新增、編輯、刪除會員帳號</li>
-              <li>新增、編輯、刪除貼文留言</li>
-              <li>LIKE貼文或留言</li>
-            </ul>
+            <br />
             <h3 className="fw-bold">
               大頭貼、貼文可以使用圖片，若需要這裡有提供圖片
             </h3>
@@ -54,17 +50,12 @@ const WelcomepageComponent = () => {
           </div>
           <div className="col-md-6">
             <div className="h-100 p-5 bg-light border rounded-3">
-              <h2>加入會員</h2>
-              <p>會員可以發布新貼文、留言、喜歡貼文或留言</p>
-              <button
-                onClick={() => {
-                  navigate("/register");
-                }}
-                className="btn btn-outline-secondary"
-                type="button"
-              >
-                登錄會員、或者註冊一個帳號
-              </button>
+              <h2>網頁功能</h2>
+              <ul style={{ fontSize: "1.5rem" }}>
+                <li>新增、編輯、刪除會員帳號</li>
+                <li>新增、編輯、刪除貼文或留言</li>
+                <li>LIKE貼文或留言</li>
+              </ul>
             </div>
           </div>
         </div>
