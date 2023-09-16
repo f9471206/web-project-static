@@ -63,6 +63,40 @@
           background-color: rgb(68, 68, 255);
         }
       }
+      .deleteLoading {
+        width: 100%;
+        border: none;
+        background-color: rgb(144, 144, 255);
+        padding: 0.25rem 0;
+        color: white;
+        font-size: 1.25rem;
+        border-radius: 5px;
+        cursor: default;
+        .preloader > div {
+          margin: 2px;
+          background-color: #e6e6e6;
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          display: inline-block;
+          animation: stretchdelay 0.7s infinite ease-in-out;
+        }
+        .preloader .circ1 {
+          animation-delay: 0;
+        }
+
+        .preloader .circ2 {
+          animation-delay: 0.1s;
+        }
+
+        .preloader .circ3 {
+          animation-delay: 0.2s;
+        }
+
+        .preloader .circ4 {
+          animation-delay: 0.3s;
+        }
+      }
     }
   }
 }

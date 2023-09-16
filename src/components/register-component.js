@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
+import { set } from "date-fns";
 
-const RegisterComponent = () => {
+const RegisterComponent = ({ setRegisterModal, setLoginModal }) => {
   let [username, setUsername] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [message, setMessage] = useState("");
 
-  const navigate = useNavigate();
+  let [registerLoading, setRegisterLoading] = useState(false);
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -20,27 +21,46 @@ const RegisterComponent = () => {
     setPassword(e.target.value);
   };
   const hanleRegister = () => {
+    if (registerLoading) return;
+    setRegisterLoading(true);
     AuthService.register(username, email, password)
       .then(() => {
         window.alert("註冊成功");
-        navigate("/login");
+        setRegisterModal(false);
+        setLoginModal(true);
       })
       .catch((e) => {
-        setMessage(e.response.data);
+        console.log(e.response);
+        if (e.response.data.emailExist == true)
+          return setMessage("信箱重複"), setRegisterLoading(false);
+        setMessage("請輸入正確格式");
+        setRegisterLoading(false);
       });
   };
 
   return (
-    <div style={{ padding: "3rem" }} className="col-md-12">
-      <div>
-        <div>
-          {message && <h2>{message}</h2>}
+    <div className="login_bg">
+      <div className="register_main">
+        <div className="form-group">
+          <h1 className="text-center pb-3">註冊</h1>
+
+          <button
+            onClick={() => {
+              setRegisterModal(false);
+            }}
+            className="register_close_button"
+          >
+            X
+          </button>
+          {message && <div className="alert alert-danger">{message}</div>}
+
           <label htmlFor="username">用戶名稱:</label>
           <input
             onChange={handleUsername}
             type="text"
             className="form-control"
             name="username"
+            required
           />
         </div>
         <br />
@@ -63,11 +83,39 @@ const RegisterComponent = () => {
             name="password"
             placeholder="長度至少超過6個英文或數字"
           />
+          {!registerLoading ? (
+            <button
+              style={{ marginTop: "1rem", width: "100%" }}
+              onClick={hanleRegister}
+              className="btn btn-primary"
+            >
+              <span>註冊會員</span>
+            </button>
+          ) : (
+            <button className="register_button_cursor_none">
+              <span className="preloader">
+                <div className="circ1"></div>
+                <div className="circ2"></div>
+                <div className="circ3"></div>
+                <div className="circ4"></div>
+              </span>
+            </button>
+          )}
         </div>
-        <br />
-        <button onClick={hanleRegister} className="btn btn-primary">
-          <span>註冊會員</span>
-        </button>
+        <div style={{ margin: "1rem 0rem" }}>
+          <span>
+            已經有帳號了
+            <button
+              className="register_to_loginbtn"
+              onClick={() => {
+                setRegisterModal(false);
+                setLoginModal(true);
+              }}
+            >
+              登入
+            </button>
+          </span>
+        </div>
       </div>
     </div>
   );

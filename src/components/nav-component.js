@@ -1,11 +1,30 @@
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
-const NavComponent = ({ _id, set_id }) => {
+const NavComponent = ({
+  _id,
+  set_id,
+  loginModal,
+  setLoginModal,
+  registerModal,
+  setRegisterModal,
+}) => {
   const handleLogout = () => {
     AuthService.logout();
     set_id("");
     window.alert("成功登出");
+  };
+
+  const LoginHandle = (e) => {
+    e.preventDefault();
+    if (loginModal) return setLoginModal(false);
+    setLoginModal(true);
+  };
+
+  const registerHandle = (e) => {
+    e.preventDefault();
+    if (registerModal) return setRegisterModal(false);
+    setRegisterModal(true);
   };
 
   return (
@@ -36,15 +55,15 @@ const NavComponent = ({ _id, set_id }) => {
             </li>
             {!_id && (
               <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  註冊會員
+                <Link onClick={LoginHandle} className="nav-link" to="">
+                  會員登入
                 </Link>
               </li>
             )}
             {!_id && (
               <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  會員登入
+                <Link onClick={registerHandle} className="nav-link" to="">
+                  註冊會員
                 </Link>
               </li>
             )}

@@ -24,7 +24,7 @@ const WelcomepageComponent = () => {
               <li>LIKE貼文或留言</li>
             </ul>
             <h3 className="fw-bold">
-              大頭貼、貼文可以使用圖片，若需要這裡有提供圖片(上傳的圖片不能太大)
+              大頭貼、貼文可以使用圖片，若需要這裡有提供圖片
             </h3>
             <div className="welcomeimage">
               <img src={p1} className="img-thumbnail" alt="" />

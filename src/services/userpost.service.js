@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// const API_URL = "http://localhost:8080/api/post/";
 const API_URL = "https://web-project-service.onrender.com/api/post/";
 
 class UserPostService {

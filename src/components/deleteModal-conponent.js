@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import UserPostService from "../services/userpost.service";
+import { set } from "date-fns";
 
 const DeleteModal = ({
   openDeleteModal,
@@ -8,18 +9,23 @@ const DeleteModal = ({
   setAllPostData,
   AllPostData,
 }) => {
+  //delete button Loading
+  let [deleteLoading, setDeleteLoading] = useState(false);
   //還沒按下刪除之前都是 false
   if (openDeleteModal == false) return;
 
   const handleDelete = () => {
     let _id = editData._id; //文章的ID
-
+    if (deleteLoading) return;
+    setDeleteLoading(true);
     UserPostService.delePost(_id)
       .then((d) => {
         setOpenDeleteModal(false);
+        setDeleteLoading(false);
         setAllPostData(AllPostData.filter((m) => m._id !== _id));
       })
       .catch((err) => {
+        setDeleteLoading(false);
         console.log(err);
       });
   };
@@ -58,9 +64,20 @@ const DeleteModal = ({
           </div>
         )}
         <div className="delte_submit_div">
-          <button onClick={handleDelete} className="delete_button">
-            確定刪除
-          </button>
+          {!deleteLoading ? (
+            <button onClick={handleDelete} className="delete_button">
+              確定刪除
+            </button>
+          ) : (
+            <button className="deleteLoading">
+              <span className="preloader">
+                <div className="circ1"></div>
+                <div className="circ2"></div>
+                <div className="circ3"></div>
+                <div className="circ4"></div>
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </div>

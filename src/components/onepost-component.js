@@ -5,6 +5,7 @@ import ReplyPostComponent from "./replypost-component";
 import ReplysComponent from "./replys-component";
 import PostEditComponent from "./postEdit-component";
 import OnepostDeletemodalComponent from "./onepostdeletemodal-component";
+import HomeLoadingConponent from "./homeLoading-conponent";
 import Calculate from "./showtime";
 import AuthService from "../services/auth.service";
 import UserPostService from "../services/userpost.service";
@@ -81,7 +82,7 @@ function OnepostComponent() {
       setUser_id(AuthService.getCurrentUser().user._id);
     }
   }, [newReply]);
-
+  if (!postData) return <HomeLoadingConponent />;
   return (
     <div className="container py-4 home_main">
       <PostEditComponent

@@ -10,12 +10,16 @@ const OnepostDeletemodalComponent = ({
   //按下刪除後重導
   const navigate = useNavigate();
 
+  let [deleteLoading, setDeleteLoading] = useState(false);
+
   //按下 刪除
   const handleDelete = () => {
+    if (deleteLoading) return;
+    setDeleteLoading(true);
     UserPostService.delePost(_id)
       .then((d) => {
         if (d.status == 200) {
-          navigate("/");
+          navigate("/home");
         }
       })
       .catch((err) => {
@@ -39,23 +43,36 @@ const OnepostDeletemodalComponent = ({
         >
           <h3>你確定要刪除此篇貼文</h3>
           <div className="modal-footer">
-            <button
-              onClick={() => {
-                setOpenDeleteModal(false);
-              }}
-              type="button"
-              className="btn btn-secondary m-1"
-            >
-              返回
-            </button>
+            {!deleteLoading ? (
+              <>
+                <button
+                  onClick={() => {
+                    setOpenDeleteModal(false);
+                  }}
+                  type="button"
+                  className="btn btn-secondary m-1"
+                >
+                  返回
+                </button>
 
-            <button
-              onClick={handleDelete}
-              type="button"
-              className="btn btn-primary m-1"
-            >
-              確定刪除
-            </button>
+                <button
+                  onClick={handleDelete}
+                  type="button"
+                  className="btn btn-primary m-1"
+                >
+                  確定刪除
+                </button>
+              </>
+            ) : (
+              <button className="onePostDeleteLoading">
+                <span className="preloader">
+                  <div className="circ1"></div>
+                  <div className="circ2"></div>
+                  <div className="circ3"></div>
+                  <div className="circ4"></div>
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>

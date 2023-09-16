@@ -5,6 +5,9 @@ import imageIcon from "../image/message/image.svg";
 import circle from "../image/message/circle.svg";
 
 const PostnewComponent = ({ result, setResult }) => {
+  //送出後的Loading
+  let [newPostLoading, setNewPostLoading] = useState(false);
+
   //連結input file
   const inputRef = useRef(null);
   const handleClickImage = (e) => {
@@ -37,17 +40,21 @@ const PostnewComponent = ({ result, setResult }) => {
 
   //傳送資料
   const handleSubmit = () => {
+    if (newPostLoading) return;
     if (newPost.length == 0) return; //如果沒有文字就不送出
+    setNewPostLoading(true);
     if (!image) {
       //新貼文沒有圖片就用 newPost()
       UserPostService.newPost(newPost)
         .then(() => {
           setResult(true);
+          setNewPostLoading(false);
           setNewPost(""); //送出後清空文字
           contentEditableRef.current.innerHTML = "";
         })
         .catch((err) => {
           console.log(err);
+          setNewPostLoading(false);
         });
     } else {
       //新貼文有圖片就用 newPostAndImgae()
@@ -56,11 +63,13 @@ const PostnewComponent = ({ result, setResult }) => {
       UserPostService.newPostAndImgae(newPost, image)
         .then(() => {
           setResult(true);
+          setNewPostLoading(false);
           setNewPost(""); //送出後清空文字
           contentEditableRef.current.innerHTML = "";
           setImage(""); //送出後清空圖片
         })
         .catch((err) => {
+          setNewPostLoading(false);
           window.alert("失敗\n請使用較小的圖片");
         });
     }
@@ -68,16 +77,6 @@ const PostnewComponent = ({ result, setResult }) => {
 
   return (
     <div>
-      {/* 新貼文發布的頭像資訊
-      {AuthService.getCurrentUser() && (
-        <div className="postnew_main">
-          <div className="postnew_img">
-            <img src={defaultImg} alt="" />
-          </div>
-          <h2>dmin</h2>
-        </div>
-      )} */}
-
       {!AuthService.getCurrentUser() && (
         <div
           onInput={handleContent}
@@ -121,12 +120,23 @@ const PostnewComponent = ({ result, setResult }) => {
         )}
 
         <div className="new_post_button">
-          <button
-            onClick={handleSubmit}
-            className={newPost.length > 0 ? "buttom_change" : ""}
-          >
-            發布
-          </button>
+          {!newPostLoading ? (
+            <button
+              onClick={handleSubmit}
+              className={newPost.length > 0 ? "buttom_change" : ""}
+            >
+              發布
+            </button>
+          ) : (
+            <button>
+              <span className="preloader">
+                <div className="circ1"></div>
+                <div className="circ2"></div>
+                <div className="circ3"></div>
+                <div className="circ4"></div>
+              </span>
+            </button>
+          )}
         </div>
       </div>
       <hr />

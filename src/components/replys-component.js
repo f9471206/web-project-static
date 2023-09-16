@@ -5,6 +5,7 @@ import AuthService from "../services/auth.service";
 import Calculate from "./showtime";
 import defaulephoto from "../image/user_photo/userdef.svg";
 import { useParams } from "react-router-dom";
+import HomeLoadingConponent from "./homeLoading-conponent";
 
 const ReplysComponent = ({ newReply }) => {
   let [userId, serUserId] = useState(""); //確認 like array 是否有按過了
@@ -14,6 +15,9 @@ const ReplysComponent = ({ newReply }) => {
   let { _id } = useParams(); //網址上 post ID
 
   let [replyEdit, setReplyEdit] = useState(false); //開啟留言的編輯或刪除
+
+  //Loading
+  let [loadingBtn, setLoadingBtn] = useState(false);
 
   const handleLike = (e) => {
     if (!userId) return window.alert("請先登入");
@@ -86,14 +90,20 @@ const ReplysComponent = ({ newReply }) => {
 
   //確認編輯後送出
   const handleEditReplySubmit = () => {
+    if (!editReply) return;
+    if (loadingBtn) return;
+    setLoadingBtn(true);
     UserPostService.editReply(_id, replyContentID, editReply)
       .then((d) => {
         setPostData(d.data);
         setReplyEditClick(false); //關閉輸入欄
         setReplyContentID("");
+        setLoadingBtn(false);
+        setEditReply("");
       })
       .catch((err) => {
         console.log(err);
+        setLoadingBtn(false);
       });
   };
 
@@ -109,13 +119,17 @@ const ReplysComponent = ({ newReply }) => {
   };
   //送出刪除
   const handleDelteSumbit = () => {
+    if (loadingBtn) return;
+    setLoadingBtn(true);
     UserPostService.deleteReply(_id, chackReplyID)
       .then((d) => {
         setPostData(d.data);
         setDeleteChack(false);
+        setLoadingBtn(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoadingBtn(false);
       });
   };
 
@@ -132,6 +146,7 @@ const ReplysComponent = ({ newReply }) => {
     }
   }, [newReply]);
 
+  if (!postData) return <HomeLoadingConponent />;
   return (
     <div>
       {postData &&
@@ -220,23 +235,41 @@ const ReplysComponent = ({ newReply }) => {
                       {data.content}
                     </div>
                     <div className="modal-footer">
-                      <button
-                        onClick={() => {
-                          setReplyEditClick(false);
-                          setReplyContentID("");
-                        }}
-                        type="button"
-                        className="btn btn-secondary m-1"
-                      >
-                        返回
-                      </button>
-                      <button
-                        onClick={handleEditReplySubmit}
-                        type="button"
-                        className="btn btn-primary m-1"
-                      >
-                        確定編輯
-                      </button>
+                      {!loadingBtn && editReply && (
+                        <>
+                          <button
+                            onClick={() => {
+                              setReplyEditClick(false);
+                              setReplyContentID("");
+                              setEditReply("");
+                            }}
+                            type="button"
+                            className="btn btn-secondary m-1"
+                          >
+                            返回
+                          </button>
+                          <button
+                            onClick={handleEditReplySubmit}
+                            type="button"
+                            className="btn btn-primary m-1"
+                          >
+                            確定編輯
+                          </button>
+                        </>
+                      )}
+                      {loadingBtn && (
+                        <button
+                          style={{ cursor: "default" }}
+                          className="replysDeleteLoading"
+                        >
+                          <span className="preloader">
+                            <div className="circ1"></div>
+                            <div className="circ2"></div>
+                            <div className="circ3"></div>
+                            <div className="circ4"></div>
+                          </span>
+                        </button>
+                      )}
                     </div>
                   </>
                 )}
@@ -244,22 +277,39 @@ const ReplysComponent = ({ newReply }) => {
                 {/* 刪除彈出的提醒 */}
                 {deleteChack && deleteID == data._id && (
                   <div className="modal-footer">
-                    <button
-                      onClick={() => {
-                        setDeleteChack(false);
-                      }}
-                      type="button"
-                      className="btn btn-secondary m-1"
-                    >
-                      返回
-                    </button>
-                    <button
-                      onClick={handleDelteSumbit}
-                      type="button"
-                      className="btn btn-danger m-1"
-                    >
-                      確定刪除
-                    </button>
+                    {!loadingBtn ? (
+                      <>
+                        {" "}
+                        <button
+                          onClick={() => {
+                            setDeleteChack(false);
+                          }}
+                          type="button"
+                          className="btn btn-secondary m-1"
+                        >
+                          返回
+                        </button>
+                        <button
+                          onClick={handleDelteSumbit}
+                          type="button"
+                          className="btn btn-danger m-1"
+                        >
+                          確定刪除
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        style={{ cursor: "default" }}
+                        className="replysDeleteLoading"
+                      >
+                        <span className="preloader">
+                          <div className="circ1"></div>
+                          <div className="circ2"></div>
+                          <div className="circ3"></div>
+                          <div className="circ4"></div>
+                        </span>
+                      </button>
+                    )}
                   </div>
                 )}
 

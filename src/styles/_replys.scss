@@ -103,3 +103,32 @@
     object-fit: cover;
   }
 }
+
+.replysDeleteLoading {
+  border: none;
+  height: 36px;
+  .preloader > div {
+    margin: 2px;
+    background-color: #b9b9b9;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: stretchdelay 0.7s infinite ease-in-out;
+  }
+  .preloader .circ1 {
+    animation-delay: 0;
+  }
+
+  .preloader .circ2 {
+    animation-delay: 0.1s;
+  }
+
+  .preloader .circ3 {
+    animation-delay: 0.2s;
+  }
+
+  .preloader .circ4 {
+    animation-delay: 0.3s;
+  }
+}

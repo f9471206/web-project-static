@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import UserProfile from "../services/userprofile.service";
 import { useNavigate, useParams } from "react-router-dom";
+import HomeLoadingConponent from "./homeLoading-conponent";
 
 const EditprofileComponent = () => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const EditprofileComponent = () => {
   let [userData, setUserData] = useState(""); //資料庫拿的資料
 
   let [inputUsername, setInputUsername] = useState(""); //inputUsername
+
+  let [subLoading, setSubLoading] = useState(false);
 
   const handleButtonClick = () => {
     inputRef.current.click(); //button 連結 input type="file"
@@ -35,6 +38,9 @@ const EditprofileComponent = () => {
 
   //送出編輯後的資料
   const handleSumbit = () => {
+    if (subLoading) return;
+    setSubLoading(true);
+
     if (image == "" && inputUsername == "") {
       //如果都沒編輯案送出 直接導回個人頁面
       return navigate("/profile/" + _id);
@@ -79,6 +85,8 @@ const EditprofileComponent = () => {
         console.log(err);
       });
   }, []);
+
+  if (!userData) return <HomeLoadingConponent />;
   return (
     <div className="container py-4">
       {userData &&
@@ -113,7 +121,17 @@ const EditprofileComponent = () => {
                 />
               </div>
               <div className="sudmit_div">
-                <button onClick={handleSumbit}>修改資料</button>
+                <button onClick={handleSumbit}>
+                  修改資料
+                  {subLoading && (
+                    <span className="preloader">
+                      <div className="circ1"></div>
+                      <div className="circ2"></div>
+                      <div className="circ3"></div>
+                      <div className="circ4"></div>
+                    </span>
+                  )}
+                </button>
               </div>
             </div>
           );

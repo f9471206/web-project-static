@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Login from "./components/login-component";
+// import Login from "./components/login-component";
 import ProfileComponent from "./components/profile-component";
 import Home from "./components/home";
 import RegisterComponent from "./components/register-component";
@@ -31,7 +31,7 @@ function App() {
           />
           <Route path="/profile/edit/:_id" element={<EditprofileComponent />} />
           <Route path="/home/:_id" element={<OnepostComponent />} />
-          <Route path="/login" element={<Login _id={_id} set_id={set_id} />} />
+          {/* <Route path="/login" element={<Login _id={_id} set_id={set_id} />} /> */}
           <Route path="/register" element={<RegisterComponent />} />
         </Route>
       </Routes>

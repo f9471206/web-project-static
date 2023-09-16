@@ -72,9 +72,9 @@
         height: 30px;
       }
     }
-    button {
+    .sub_button {
       border-radius: 10px;
-      background-color: rgb(165, 165, 255);
+      background-color: rgb(119, 119, 255);
       border: none;
       padding: 0.25rem;
       color: white;
@@ -82,7 +82,41 @@
       font-size: 1.25rem;
       transition: all 0.25s ease;
       &:hover {
-        background-color: rgb(127, 127, 255);
+        background-color: rgb(85, 85, 255);
+      }
+    }
+    .postEdit_btn_Loadong {
+      border-radius: 10px;
+      background-color: rgb(165, 165, 255);
+      border: none;
+      padding: 0.25rem;
+      color: white;
+      font-weight: 400;
+      font-size: 1.25rem;
+      cursor: default;
+      .preloader > div {
+        margin: 2px;
+        background-color: #e6e6e6;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        animation: stretchdelay 0.7s infinite ease-in-out;
+      }
+      .preloader .circ1 {
+        animation-delay: 0;
+      }
+
+      .preloader .circ2 {
+        animation-delay: 0.1s;
+      }
+
+      .preloader .circ3 {
+        animation-delay: 0.2s;
+      }
+
+      .preloader .circ4 {
+        animation-delay: 0.3s;
       }
     }
   }

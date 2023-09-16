@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import PostEditComponent from "./postEdit-component";
 import DeleteModal from "./deleteModal-conponent";
+import HomeLoadingConponent from "./homeLoading-conponent";
 import Calculate from "./showtime";
 import defaulephoto from "../image/user_photo/userdef.svg";
 import messageSvg from "../image/message/message.svg"; //回復icon
@@ -108,6 +109,7 @@ const Home = () => {
   return (
     <div className="container py-4 home_main">
       <PostnewComponent result={result} setResult={setResult} />
+      {AllPostData == "" && <HomeLoadingConponent />}
       <PostEditComponent
         openModal={openModal}
         setOpenModal={setOpenModal}

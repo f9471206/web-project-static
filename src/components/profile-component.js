@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import UserProfile from "../services/userprofile.service";
 import { format } from "date-fns";
 import DeleteuserComponent from "./deleteuser-component";
+import HomeLoadingConponent from "./homeLoading-conponent";
 
 const ProfileComponent = ({ user_id, setuser_id }) => {
   let { _id } = useParams();
@@ -32,6 +33,7 @@ const ProfileComponent = ({ user_id, setuser_id }) => {
       });
   }, []);
 
+  if (!profileData) return <HomeLoadingConponent />;
   return (
     <div className="container py-4 home_main">
       {profileData &&

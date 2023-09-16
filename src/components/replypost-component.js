@@ -6,6 +6,8 @@ import DefaultPhoto from "../image/user_photo/userdef.svg";
 const ReplyComponent = ({ _id, setNewReply }) => {
   let [reply, setReply] = useState([]); //留言內容
 
+  let [replyLoading, setReplyLoading] = useState(false);
+
   const handlecontent = (e) => {
     // 留言handle
     setReply(e.target.innerText);
@@ -15,12 +17,16 @@ const ReplyComponent = ({ _id, setNewReply }) => {
   const contentEditableRef = useRef(null);
 
   const handleSubmit = () => {
+    if (reply.length == 0) return;
+    if (replyLoading) return;
+    setReplyLoading(true);
     //送出留言
     UserPostService.postReply(_id, reply)
       .then((data) => {
         contentEditableRef.current.innerHTML = "";
         setReply("");
         setNewReply(true);
+        setReplyLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -60,12 +66,23 @@ const ReplyComponent = ({ _id, setNewReply }) => {
             </div>
           )}
         </div>
-        <button
-          onClick={handleSubmit}
-          className={`newRplybtn ${reply.length > 0 ? "buttom_change" : ""}`}
-        >
-          送出
-        </button>
+        {!replyLoading ? (
+          <button
+            onClick={handleSubmit}
+            className={`newRplybtn ${reply.length > 0 ? "buttom_change" : ""}`}
+          >
+            送出
+          </button>
+        ) : (
+          <button className="newRplybtn">
+            <span className="preloader">
+              <div className="circ1"></div>
+              <div className="circ2"></div>
+              <div className="circ3"></div>
+              <div className="circ4"></div>
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

@@ -9,9 +9,15 @@ const PostEditComponent = ({
   editData,
   setEditData,
 }) => {
-  let [postContent, setPostContent] = useState("");
+  let content;
+  if (editData) {
+    content = editData.content;
+  }
+  let [postContent, setPostContent] = useState(content);
 
   let [updateImage, setUpdateImage] = useState(true); //原本data的圖片 是否有編輯刪掉
+
+  let [postEditLoading, setPostEditLoading] = useState(false);
 
   let [editImage, setEditImage] = useState("");
   //取的上傳圖片後 input 的值
@@ -41,9 +47,9 @@ const PostEditComponent = ({
 
   //送出資料
   const handleSubmit = () => {
-    setPostContent(editData.content);
-
     if (postContent == "") return; //貼文沒有內容就不送出
+    if (postEditLoading) return;
+    setPostEditLoading(true);
     let _id = editData._id;
     if (updateImage == false && editImage == "") {
       //(取消原本貼文圖片);
@@ -53,6 +59,7 @@ const PostEditComponent = ({
           setOpenModal(false);
           setUpdateImage(true);
           setEditImage("");
+          setPostEditLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -65,6 +72,7 @@ const PostEditComponent = ({
           setOpenModal(false);
           setUpdateImage(true);
           setEditImage("");
+          setPostEditLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -77,9 +85,11 @@ const PostEditComponent = ({
           setOpenModal(false);
           setUpdateImage(true);
           setEditImage("");
+          setPostEditLoading(false);
         })
         .catch((err) => {
           window.alert("失敗\n請使用較小的圖片");
+          setPostEditLoading(false);
         });
     }
   };
@@ -158,7 +168,20 @@ const PostEditComponent = ({
         >
           X
         </p>
-        <button onClick={handleSubmit}>更新</button>
+        {!postEditLoading ? (
+          <button className="sub_button" onClick={handleSubmit}>
+            更新
+          </button>
+        ) : (
+          <button className="postEdit_btn_Loadong">
+            <span className="preloader">
+              <div className="circ1"></div>
+              <div className="circ2"></div>
+              <div className="circ3"></div>
+              <div className="circ4"></div>
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );
