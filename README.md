@@ -1,6 +1,6 @@
 React 作品
 
-<a href="https://web-project-static.onrender.com/">作品網頁連結</a>
+作品網頁連結：https://web-project-static.onrender.com/
 
 社群貼文系統，使用者註冊帳號後可發布貼文，編輯或是刪除所發布的貼文
 
