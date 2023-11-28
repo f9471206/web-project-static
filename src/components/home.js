@@ -13,6 +13,11 @@ import PostnewComponent from "./postnew-component";
 import UserPostService from "../services/userpost.service";
 
 const Home = () => {
+  // setInterval(function () {
+  //   console.log("更新一次");
+  //   window.location.reload(1);
+  // }, 600000);
+
   //貼文排序按鈕
   let myHomeSort = document.querySelector("#myHomeSort");
   let myIcon = document.querySelector("#myIcon");
@@ -166,70 +171,72 @@ const Home = () => {
         AllPostData={AllPostData}
       />
       {/* 文章排序 */}
-      <div
-        style={{
-          padding: "1rem 0 ",
-          display: "flex",
-          flexDirection: "column",
-          width: "fit-content",
-        }}
-      >
+      {AllPostData != "" && (
         <div
-          className="my_post_sort"
           style={{
+            padding: "1rem 0 ",
             display: "flex",
-            alignContent: "center",
+            flexDirection: "column",
+            width: "fit-content",
           }}
         >
-          <span
-            onClick={() => {
-              myHomeSort.classList.toggle("my_home_sort_display");
-              if (myHomeSort.classList.contains("my_home_sort_display")) {
-                myIcon.style.transform = "rotate(0deg)";
-              } else {
-                myIcon.style.transform = "rotate(180deg)";
-              }
-            }}
+          <div
+            className="my_post_sort"
             style={{
-              cursor: "pointer",
-              fontSize: "1.5rem",
-              padding: "0.25rem",
               display: "flex",
-              userSelect: "none",
+              alignContent: "center",
             }}
           >
-            {sortID == 0 && "最新"}
-            {sortID == 1 && "最早"}
-            {sortID == 2 && "最多喜歡"}
-            {sortID == 3 && "最多留言"}
-            <i
-              id="myIcon"
-              style={{
-                padding: "0 0.5rem",
-                fontSize: "1.5rem",
-                transition: "all 0.25s ease",
+            <span
+              onClick={() => {
+                myHomeSort.classList.toggle("my_home_sort_display");
+                if (myHomeSort.classList.contains("my_home_sort_display")) {
+                  myIcon.style.transform = "rotate(0deg)";
+                } else {
+                  myIcon.style.transform = "rotate(180deg)";
+                }
               }}
-              className="fa-solid fa-sort-down myIcon"
-            ></i>
-          </span>
+              style={{
+                cursor: "pointer",
+                fontSize: "1.5rem",
+                padding: "0.25rem",
+                display: "flex",
+                userSelect: "none",
+              }}
+            >
+              {sortID == 0 && "最新"}
+              {sortID == 1 && "最早"}
+              {sortID == 2 && "最多喜歡"}
+              {sortID == 3 && "最多留言"}
+              <i
+                id="myIcon"
+                style={{
+                  padding: "0 0.5rem",
+                  fontSize: "1.5rem",
+                  transition: "all 0.25s ease",
+                }}
+                className="fa-solid fa-sort-down myIcon"
+              ></i>
+            </span>
+          </div>
+          <div style={{ display: "flex", position: "relative" }}>
+            <ul id="myHomeSort" className="my_home_sort my_home_sort_display">
+              <li onClick={handleSort} id="0">
+                最新
+              </li>
+              <li onClick={handleSort} id="1">
+                最早
+              </li>
+              <li onClick={handleSort} id="2">
+                最喜歡
+              </li>
+              <li onClick={handleSort} id="3">
+                最多留言
+              </li>
+            </ul>
+          </div>
         </div>
-        <div style={{ display: "flex", position: "relative" }}>
-          <ul id="myHomeSort" className="my_home_sort my_home_sort_display">
-            <li onClick={handleSort} id="0">
-              最新
-            </li>
-            <li onClick={handleSort} id="1">
-              最早
-            </li>
-            <li onClick={handleSort} id="2">
-              最喜歡
-            </li>
-            <li onClick={handleSort} id="3">
-              最多留言
-            </li>
-          </ul>
-        </div>
-      </div>
+      )}
 
       {AllPostData &&
         AllPostData.map((data) => {
