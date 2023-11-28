@@ -4,13 +4,46 @@ import HomeService from "../services/home.service";
 import AuthService from "../services/auth.service";
 import Calculate from "./showtime";
 import defaulephoto from "../image/user_photo/userdef.svg";
+import message from "../image/message/comment.svg";
 import { useParams } from "react-router-dom";
 import HomeLoadingConponent from "./homeLoading-conponent";
 
 const ReplysComponent = ({ newReply }) => {
+  let [sort_ID, setSortID] = useState("");
+  let [replysSort, setReplysSort] = useState(false); //開關留言排序的選單
+  const handleSort = () => {
+    if (replysSort) {
+      document.getElementById("myIcon").style.transform = "rotate(0deg)";
+      setReplysSort(false);
+    } else {
+      document.getElementById("myIcon").style.transform = "rotate(180deg)";
+      setReplysSort(true);
+    }
+  };
+
   let [userId, serUserId] = useState(""); //確認 like array 是否有按過了
 
   let [postData, setPostData] = useState("");
+
+  //最新留言
+  if (postData.reply && sort_ID == 1) {
+    postData.reply.sort((b, a) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+  }
+  //最早留言
+  if (postData.reply && sort_ID == 0) {
+    postData.reply.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+  }
+
+  //熱門留言
+  if (postData.reply && sort_ID == 2) {
+    postData.reply.sort((b, a) => {
+      return a.like.length - b.like.length;
+    });
+  }
 
   let { _id } = useParams(); //網址上 post ID
 
@@ -149,6 +182,114 @@ const ReplysComponent = ({ newReply }) => {
   if (!postData) return <HomeLoadingConponent />;
   return (
     <div>
+      {postData.reply == "" && (
+        <div
+          style={{
+            padding: "5rem 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "200px",
+              padding: "0.25rem 1rem",
+            }}
+          >
+            <img style={{ opacity: "0.2" }} src={message} alt="" />
+          </div>
+          <h4 style={{ textAlign: "center", color: "grey" }}>暫時還沒有留言</h4>
+        </div>
+      )}
+      {postData.reply != "" && (
+        <div style={{ position: "relative", padding: "0.5rem 0.25rem" }}>
+          <div
+            onClick={handleSort}
+            className="my-select__container"
+            style={{
+              paddingRight: "0.25rem",
+              display: "flex",
+              alignItems: "center",
+              width: "fit-content",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "1.5rem",
+                padding: " 0 0.25rem",
+                userSelect: "none",
+              }}
+            >
+              {!sort_ID && "最早"}
+              {sort_ID && sort_ID == 0 && "最早"}
+              {sort_ID && sort_ID == 1 && "最新"}
+              {sort_ID && sort_ID == 2 && "熱門"}
+            </span>
+            <i
+              id="myIcon"
+              style={{ paddingBottom: "12px", fontSize: "1.5rem" }}
+              className="fa-solid fa-sort-down myIcon"
+            ></i>
+            <div
+              style={{
+                position: "absolute",
+                top: "110%",
+                backgroundColor: "red",
+                zIndex: "10",
+              }}
+            ></div>
+          </div>
+          {replysSort && (
+            <div
+              style={{
+                position: "absolute",
+                top: "110%",
+                zIndex: "10",
+                backgroundColor: "orange",
+                borderRadius: "10px",
+              }}
+            >
+              <ul className="mhy-select__container_li">
+                <li
+                  onClick={(e) => {
+                    setSortID(e.target.id);
+                    setReplysSort(false);
+                    document.getElementById("myIcon").style.transform =
+                      "rotate(0deg)";
+                  }}
+                  id="0"
+                >
+                  最早
+                </li>
+                <li
+                  onClick={(e) => {
+                    setSortID(e.target.id);
+                    setReplysSort(false);
+                    document.getElementById("myIcon").style.transform =
+                      "rotate(0deg)";
+                  }}
+                  id="1"
+                >
+                  最新
+                </li>
+                <li
+                  onClick={(e) => {
+                    setSortID(e.target.id);
+                    setReplysSort(false);
+                    document.getElementById("myIcon").style.transform =
+                      "rotate(0deg)";
+                  }}
+                  id="2"
+                >
+                  熱門
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
       {postData &&
         postData.reply.map((data) => {
           if (!data.user)
@@ -208,7 +349,10 @@ const ReplysComponent = ({ newReply }) => {
               </div>
               <div className="replys_rigth">
                 <h2>{data.user.username}</h2>
-                <p>{Calculate.calculateTime(data.date)}</p>
+                <p style={{ marginBottom: "0" }}>
+                  {Calculate.calculateTime(data.date)}
+                </p>
+                {/* <p>{index + 1 + " 樓"}</p> */}
 
                 {replyContentID != data._id && (
                   // <p className="replys_p">{data.content}</p>

@@ -152,6 +152,39 @@ body {
   background-color: rgb(181, 181, 181);
 }
 
+.my_post_sort {
+  transition: all 0.2s ease;
+}
+.my_post_sort:hover {
+  color: rgb(62, 110, 255);
+}
+
+.my_home_sort {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  list-style-type: none;
+  background-color: rgb(62, 110, 255);
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 10;
+  width: 130px;
+  box-shadow: 0 0 8px black;
+}
+.my_home_sort li {
+  cursor: pointer;
+  padding: 0.1rem 0.5rem;
+  transition: all 0.25s ease;
+}
+.my_home_sort li:hover {
+  background-color: rgb(120, 154, 255);
+  border-radius: 10px;
+}
+
+.my_home_sort_display {
+  display: none;
+}
+
 @media screen and (max-width: 500px) {
   .one_post {
     padding: 1.5rem 0;
@@ -591,6 +624,39 @@ body {
 }
 .reply_main .preloader .circ4 {
   animation-delay: 0.3s;
+}
+
+.my-select__container {
+  cursor: pointer;
+  transition: 0.25s all ease;
+}
+.my-select__container:hover {
+  color: rgb(38, 92, 255);
+}
+
+.mhy-select__container_li {
+  cursor: pointer;
+  list-style-type: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+  margin: 0;
+  transition: 0.25s all ease;
+  padding: 0.5rem;
+  background-color: rgb(62, 110, 255);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px black;
+}
+.mhy-select__container_li :hover {
+  background-color: rgb(120, 154, 255);
+}
+.mhy-select__container_li li {
+  border-radius: 10px;
+  padding: 0.2rem 0.75rem;
+}
+
+.myIcon {
+  transition: all 0.15s ease;
 }
 
 @media screen and (max-width: 560px) {

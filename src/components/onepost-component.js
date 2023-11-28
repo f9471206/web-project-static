@@ -158,7 +158,9 @@ function OnepostComponent() {
           <div className="post_message">
             <div className="message_svg">
               <img src={messageSvg} alt="" />
-              <p>{postData && postData.reply.length}</p>
+              <p style={{ color: "rgb(62, 110, 255)" }}>
+                {postData && postData.reply.length}
+              </p>
             </div>
             <div className="heart_svg">
               {postData.like.includes(user_id) && (

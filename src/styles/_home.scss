@@ -141,6 +141,37 @@
   }
 }
 
+.my_post_sort {
+  transition: all 0.2s ease;
+  &:hover {
+    color: rgb(62, 110, 255);
+  }
+}
+.my_home_sort {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  list-style-type: none;
+  background-color: rgb(62, 110, 255);
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 10;
+  width: 130px;
+  box-shadow: 0 0 8px black;
+  li {
+    cursor: pointer;
+    padding: 0.1rem 0.5rem;
+    transition: all 0.25s ease;
+    &:hover {
+      background-color: rgb(120, 154, 255);
+      border-radius: 10px;
+    }
+  }
+}
+.my_home_sort_display {
+  display: none;
+}
+
 @media screen and (max-width: 500px) {
   .one_post {
     padding: 1.5rem 0;
