@@ -1330,4 +1330,24 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+.to_top {
+  position: fixed;
+  font-size: 5rem;
+  bottom: 10%;
+  right: 10%;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.to_top.fade {
+  opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .to_top {
+    bottom: 2%;
+    right: 2%;
+  }
 }/*# sourceMappingURL=style.css.map */

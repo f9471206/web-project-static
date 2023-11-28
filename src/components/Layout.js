@@ -3,6 +3,7 @@ import Nav from "./nav-component";
 import LoginComponent from "./login-component";
 import RegisterComponent from "./register-component";
 import FootComponent from "./foot-component";
+import TotopComponent from "./totop-compomponent";
 import { useState, useEffect } from "react";
 
 const Layout = ({ _id, set_id }) => {
@@ -49,6 +50,7 @@ const Layout = ({ _id, set_id }) => {
 
       <Outlet />
       <FootComponent />
+      <TotopComponent />
     </>
   );
 };
