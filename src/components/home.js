@@ -4,7 +4,6 @@ import AuthService from "../services/auth.service";
 import PostEditComponent from "./postEdit-component";
 import DeleteModal from "./deleteModal-conponent";
 import HomeLoadingConponent from "./homeLoading-conponent";
-import TotopCompomponent from "./totop-compomponent";
 import Calculate from "./showtime";
 import defaulephoto from "../image/user_photo/userdef.svg";
 import messageSvg from "../image/message/message.svg"; //回復icon
@@ -17,10 +16,6 @@ const Home = () => {
   //   console.log("更新一次");
   //   window.location.reload(1);
   // }, 600000);
-
-  //貼文排序按鈕
-  let myHomeSort = document.querySelector("#myHomeSort");
-  let myIcon = document.querySelector("#myIcon");
 
   //
   const [sortID, setSortID] = useState(0);
@@ -139,7 +134,6 @@ const Home = () => {
     e.stopPropagation();
     setOpenDeleteModal(true);
     setCheckPostID(""); //按下編輯後 關掉(...)的延伸div
-    // document.body.style.overflow = "hidden";
   };
 
   useEffect(() => {

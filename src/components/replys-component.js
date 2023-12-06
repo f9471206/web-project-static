@@ -352,8 +352,6 @@ const ReplysComponent = ({ newReply }) => {
                 <p style={{ marginBottom: "0" }}>
                   {Calculate.calculateTime(data.date)}
                 </p>
-                {/* <p>{index + 1 + " 樓"}</p> */}
-
                 {replyContentID != data._id && (
                   // <p className="replys_p">{data.content}</p>
                   <p
@@ -366,7 +364,6 @@ const ReplysComponent = ({ newReply }) => {
                     {data.content}
                   </p>
                 )}
-
                 {/* 編輯彈出 */}
                 {replyEditClick && data._id == replyContentID && (
                   <>
@@ -423,7 +420,6 @@ const ReplysComponent = ({ newReply }) => {
                   <div className="modal-footer">
                     {!loadingBtn ? (
                       <>
-                        {" "}
                         <button
                           onClick={() => {
                             setDeleteChack(false);
