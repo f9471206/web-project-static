@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import PostEditComponent from "./postEdit-component";
@@ -24,13 +24,18 @@ const Home = () => {
   let [result, setResult] = useState("");
 
   //排序
+  const myHomeSortRef = useRef(null);
+  const myIconRef = useRef(null);
+
   const handleSort = (e) => {
     setSortID(e.target.id);
-    myHomeSort.classList.toggle("my_home_sort_display");
-    if (myHomeSort.classList.contains("my_home_sort_display")) {
-      myIcon.style.transform = "rotate(0deg)";
-    } else {
-      myIcon.style.transform = "rotate(180deg)";
+    if (myHomeSortRef.current && myIconRef.current) {
+      myHomeSortRef.current.classList.toggle("my_home_sort_display");
+      if (myHomeSortRef.current.classList.contains("my_home_sort_display")) {
+        myIconRef.current.style.transform = "rotate(0deg)";
+      } else {
+        myIconRef.current.style.transform = "rotate(180deg)";
+      }
     }
   };
 
@@ -183,11 +188,19 @@ const Home = () => {
           >
             <span
               onClick={() => {
-                myHomeSort.classList.toggle("my_home_sort_display");
-                if (myHomeSort.classList.contains("my_home_sort_display")) {
-                  myIcon.style.transform = "rotate(0deg)";
-                } else {
-                  myIcon.style.transform = "rotate(180deg)";
+                if (myHomeSortRef.current && myIconRef.current) {
+                  myHomeSortRef.current.classList.toggle(
+                    "my_home_sort_display"
+                  );
+                  if (
+                    myHomeSortRef.current.classList.contains(
+                      "my_home_sort_display"
+                    )
+                  ) {
+                    myIconRef.current.style.transform = "rotate(0deg)";
+                  } else {
+                    myIconRef.current.style.transform = "rotate(180deg)";
+                  }
                 }
               }}
               style={{
@@ -204,6 +217,7 @@ const Home = () => {
               {sortID == 3 && "最多留言"}
               <i
                 id="myIcon"
+                ref={myIconRef}
                 style={{
                   padding: "0 0.5rem",
                   fontSize: "1.5rem",
@@ -214,7 +228,11 @@ const Home = () => {
             </span>
           </div>
           <div style={{ display: "flex", position: "relative" }}>
-            <ul id="myHomeSort" className="my_home_sort my_home_sort_display">
+            <ul
+              id="myHomeSort"
+              ref={myHomeSortRef}
+              className="my_home_sort my_home_sort_display"
+            >
               <li onClick={handleSort} id="0">
                 最新
               </li>
