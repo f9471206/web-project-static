@@ -11,5 +11,9 @@ React 社群貼文系統作品
 
 -新增、編輯、刪除、喜歡貼文或留言
 
+-可用帳號
+-帳號：admin@gmail.com
+-密碼：admin
+
 
 後端：https://github.com/f9471206/web-project-service
