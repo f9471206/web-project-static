@@ -12,12 +12,6 @@ import PostnewComponent from "./postnew-component";
 import UserPostService from "../services/userpost.service";
 
 const Home = () => {
-  // setInterval(function () {
-  //   console.log("更新一次");
-  //   window.location.reload(1);
-  // }, 600000);
-
-  //
   const [sortID, setSortID] = useState(0);
 
   //更新post
