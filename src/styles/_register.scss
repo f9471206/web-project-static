@@ -1,6 +1,6 @@
 .register_main {
   z-index: 66;
-  background-color: white;
+  background-color: #ddd;
   padding: 3rem;
   border-radius: 20px;
   width: 570px;
@@ -10,6 +10,9 @@
   position: relative;
   box-shadow: 0px 0px 18px 0px rgb(0, 0, 0, 0.75);
   transform: translate(-50%, -50%);
+  input {
+    background-color: #eee;
+  }
   .register_close_button {
     position: absolute;
     top: 1.25rem;
@@ -19,14 +22,11 @@
     background-color: white;
     transition: all 0.25s ease;
     border-radius: 5px;
-    &:hover {
-      background-color: rgb(230, 230, 230);
-    }
   }
   .register_to_loginbtn {
     border: none;
     color: rgb(40, 40, 255);
-    background-color: white;
+    background-color: transparent;
     transition: all 0.25s ease;
     margin-left: 10px;
     &:hover {
@@ -71,12 +71,5 @@
     border-radius: 6px;
     background-color: rgb(177, 177, 177);
     cursor: default;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .register_main {
-    height: 100%;
-    border-radius: 0;
   }
 }

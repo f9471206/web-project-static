@@ -5,6 +5,7 @@
 }
 body {
   font-family: "Noto Sans TC", sans-serif;
+  background-color: #c6c6c6;
 }
 @import "./home";
 @import "./profile";
@@ -22,3 +23,4 @@ body {
 @import "./register";
 @import "./homeLoading";
 @import "./totop";
+@import "./nav";

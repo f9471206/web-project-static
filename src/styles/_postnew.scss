@@ -19,7 +19,10 @@
     padding-left: 2rem;
   }
 }
-
+.postNew-bg {
+  background-color: #dcdcdc;
+  border-radius: 20px;
+}
 .con {
   padding: 1rem;
   font-size: 1.5rem;
@@ -35,7 +38,7 @@
 .newpost_bottom {
   display: flex;
   flex-direction: row;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
   .post_image_icon {
     padding: 0.5rem 2rem;
     flex: 1;

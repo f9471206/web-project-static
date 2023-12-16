@@ -188,7 +188,6 @@ function OnepostComponent() {
         </div>
       )}
       <ReplyPostComponent _id={_id} setNewReply={setNewReply} />
-      <hr />
       <ReplysComponent newReply={newReply} />
     </div>
   );

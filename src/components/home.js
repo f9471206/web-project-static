@@ -20,8 +20,9 @@ const Home = () => {
   //排序
   const myHomeSortRef = useRef(null);
   const myIconRef = useRef(null);
-
+  let [timeDelay, setTimeDelay] = useState(false);
   const handleSort = (e) => {
+    setTimeDelay(true);
     setSortID(e.target.id);
     if (myHomeSortRef.current && myIconRef.current) {
       myHomeSortRef.current.classList.toggle("my_home_sort_display");
@@ -31,6 +32,9 @@ const Home = () => {
         myIconRef.current.style.transform = "rotate(180deg)";
       }
     }
+    setTimeout(() => {
+      setTimeDelay(false);
+    }, 500);
   };
 
   //所有的貼文
@@ -148,7 +152,86 @@ const Home = () => {
   return (
     <div className="container py-4 home_main">
       <PostnewComponent result={result} setResult={setResult} />
+
+      {/* 文章排序 */}
+      <div
+        style={{
+          paddingTop: "2rem",
+          paddingLeft: "0.25rem",
+          display: "flex",
+          flexDirection: "column",
+          width: "fit-content",
+        }}
+      >
+        <div
+          className="my_post_sort"
+          style={{
+            display: "flex",
+            alignContent: "center",
+          }}
+        >
+          <span
+            onClick={() => {
+              if (myHomeSortRef.current && myIconRef.current) {
+                myHomeSortRef.current.classList.toggle("my_home_sort_display");
+                if (
+                  myHomeSortRef.current.classList.contains(
+                    "my_home_sort_display"
+                  )
+                ) {
+                  myIconRef.current.style.transform = "rotate(0deg)";
+                } else {
+                  myIconRef.current.style.transform = "rotate(180deg)";
+                }
+              }
+            }}
+            style={{
+              cursor: "pointer",
+              fontSize: "1.5rem",
+              display: "flex",
+              userSelect: "none",
+            }}
+          >
+            {sortID == 0 && "最新"}
+            {sortID == 1 && "最早"}
+            {sortID == 2 && "最多喜歡"}
+            {sortID == 3 && "最多留言"}
+            <i
+              id="myIcon"
+              ref={myIconRef}
+              style={{
+                padding: "0 0.5rem",
+                fontSize: "1.5rem",
+                transition: "all 0.25s ease",
+              }}
+              className="fa-solid fa-sort-down myIcon"
+            ></i>
+          </span>
+        </div>
+        <div style={{ display: "flex", position: "relative" }}>
+          <ul
+            id="myHomeSort"
+            ref={myHomeSortRef}
+            className="my_home_sort my_home_sort_display"
+          >
+            <li onClick={handleSort} id="0">
+              最新
+            </li>
+            <li onClick={handleSort} id="1">
+              最早
+            </li>
+            <li onClick={handleSort} id="2">
+              最喜歡
+            </li>
+            <li onClick={handleSort} id="3">
+              最多留言
+            </li>
+          </ul>
+        </div>
+      </div>
+
       {AllPostData == "" && <HomeLoadingConponent />}
+      {timeDelay == true && <HomeLoadingConponent />}
       <PostEditComponent
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -163,86 +246,6 @@ const Home = () => {
         setAllPostData={setAllPostData}
         AllPostData={AllPostData}
       />
-      {/* 文章排序 */}
-      {AllPostData != "" && (
-        <div
-          style={{
-            padding: "1rem 0 ",
-            display: "flex",
-            flexDirection: "column",
-            width: "fit-content",
-          }}
-        >
-          <div
-            className="my_post_sort"
-            style={{
-              display: "flex",
-              alignContent: "center",
-            }}
-          >
-            <span
-              onClick={() => {
-                if (myHomeSortRef.current && myIconRef.current) {
-                  myHomeSortRef.current.classList.toggle(
-                    "my_home_sort_display"
-                  );
-                  if (
-                    myHomeSortRef.current.classList.contains(
-                      "my_home_sort_display"
-                    )
-                  ) {
-                    myIconRef.current.style.transform = "rotate(0deg)";
-                  } else {
-                    myIconRef.current.style.transform = "rotate(180deg)";
-                  }
-                }
-              }}
-              style={{
-                cursor: "pointer",
-                fontSize: "1.5rem",
-                padding: "0.25rem",
-                display: "flex",
-                userSelect: "none",
-              }}
-            >
-              {sortID == 0 && "最新"}
-              {sortID == 1 && "最早"}
-              {sortID == 2 && "最多喜歡"}
-              {sortID == 3 && "最多留言"}
-              <i
-                id="myIcon"
-                ref={myIconRef}
-                style={{
-                  padding: "0 0.5rem",
-                  fontSize: "1.5rem",
-                  transition: "all 0.25s ease",
-                }}
-                className="fa-solid fa-sort-down myIcon"
-              ></i>
-            </span>
-          </div>
-          <div style={{ display: "flex", position: "relative" }}>
-            <ul
-              id="myHomeSort"
-              ref={myHomeSortRef}
-              className="my_home_sort my_home_sort_display"
-            >
-              <li onClick={handleSort} id="0">
-                最新
-              </li>
-              <li onClick={handleSort} id="1">
-                最早
-              </li>
-              <li onClick={handleSort} id="2">
-                最喜歡
-              </li>
-              <li onClick={handleSort} id="3">
-                最多留言
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
 
       {AllPostData &&
         AllPostData.map((data) => {

@@ -11,14 +11,15 @@ import HomeLoadingConponent from "./homeLoading-conponent";
 const ReplysComponent = ({ newReply }) => {
   let [sort_ID, setSortID] = useState("");
   let [replysSort, setReplysSort] = useState(false); //開關留言排序的選單
-  const handleSort = () => {
-    if (replysSort) {
-      document.getElementById("myIcon").style.transform = "rotate(0deg)";
-      setReplysSort(false);
-    } else {
-      document.getElementById("myIcon").style.transform = "rotate(180deg)";
-      setReplysSort(true);
-    }
+  let [timeDelay, setTimeDelay] = useState(false);
+  const handleSort = (e) => {
+    setSortID(e.target.id);
+    setTimeDelay(true);
+    setReplysSort(false);
+    document.getElementById("myIcon").style.transform = "rotate(0deg)";
+    setTimeout(() => {
+      setTimeDelay(false);
+    }, 500);
   };
 
   let [userId, serUserId] = useState(""); //確認 like array 是否有按過了
@@ -179,7 +180,8 @@ const ReplysComponent = ({ newReply }) => {
     }
   }, [newReply]);
 
-  if (!postData) return <HomeLoadingConponent />;
+  if (!postData || timeDelay) return <HomeLoadingConponent />;
+
   return (
     <div>
       {postData.reply == "" && (
@@ -203,93 +205,78 @@ const ReplysComponent = ({ newReply }) => {
           <h4 style={{ textAlign: "center", color: "grey" }}>暫時還沒有留言</h4>
         </div>
       )}
-      {postData.reply != "" && (
-        <div style={{ position: "relative", padding: "0.5rem 0.25rem" }}>
-          <div
-            onClick={handleSort}
-            className="my-select__container"
+
+      <div style={{ position: "relative", padding: "0.5rem 0.25rem" }}>
+        <div
+          onClick={() => {
+            if (replysSort) {
+              document.getElementById("myIcon").style.transform =
+                "rotate(0deg)";
+              setReplysSort(false);
+            } else {
+              document.getElementById("myIcon").style.transform =
+                "rotate(180deg)";
+              setReplysSort(true);
+            }
+          }}
+          className="my-select__container"
+          style={{
+            paddingRight: "0.25rem",
+            display: "flex",
+            alignItems: "center",
+            width: "fit-content",
+          }}
+        >
+          <span
             style={{
-              paddingRight: "0.25rem",
-              display: "flex",
-              alignItems: "center",
-              width: "fit-content",
+              fontSize: "1.5rem",
+              padding: " 0 0.25rem",
+              userSelect: "none",
             }}
           >
-            <span
-              style={{
-                fontSize: "1.5rem",
-                padding: " 0 0.25rem",
-                userSelect: "none",
-              }}
-            >
-              {!sort_ID && "最早"}
-              {sort_ID && sort_ID == 0 && "最早"}
-              {sort_ID && sort_ID == 1 && "最新"}
-              {sort_ID && sort_ID == 2 && "熱門"}
-            </span>
-            <i
-              id="myIcon"
-              style={{ paddingBottom: "12px", fontSize: "1.5rem" }}
-              className="fa-solid fa-sort-down myIcon"
-            ></i>
-            <div
-              style={{
-                position: "absolute",
-                top: "110%",
-                backgroundColor: "red",
-                zIndex: "10",
-              }}
-            ></div>
-          </div>
-          {replysSort && (
-            <div
-              style={{
-                position: "absolute",
-                top: "110%",
-                zIndex: "10",
-                backgroundColor: "orange",
-                borderRadius: "10px",
-              }}
-            >
-              <ul className="mhy-select__container_li">
-                <li
-                  onClick={(e) => {
-                    setSortID(e.target.id);
-                    setReplysSort(false);
-                    document.getElementById("myIcon").style.transform =
-                      "rotate(0deg)";
-                  }}
-                  id="0"
-                >
-                  最早
-                </li>
-                <li
-                  onClick={(e) => {
-                    setSortID(e.target.id);
-                    setReplysSort(false);
-                    document.getElementById("myIcon").style.transform =
-                      "rotate(0deg)";
-                  }}
-                  id="1"
-                >
-                  最新
-                </li>
-                <li
-                  onClick={(e) => {
-                    setSortID(e.target.id);
-                    setReplysSort(false);
-                    document.getElementById("myIcon").style.transform =
-                      "rotate(0deg)";
-                  }}
-                  id="2"
-                >
-                  熱門
-                </li>
-              </ul>
-            </div>
-          )}
+            {!sort_ID && "最早"}
+            {sort_ID && sort_ID == 0 && "最早"}
+            {sort_ID && sort_ID == 1 && "最新"}
+            {sort_ID && sort_ID == 2 && "熱門"}
+          </span>
+          <i
+            id="myIcon"
+            style={{ paddingBottom: "12px", fontSize: "1.5rem" }}
+            className="fa-solid fa-sort-down myIcon"
+          ></i>
+          <div
+            style={{
+              position: "absolute",
+              top: "110%",
+              backgroundColor: "red",
+              zIndex: "10",
+            }}
+          ></div>
         </div>
-      )}
+        {replysSort && (
+          <div
+            style={{
+              position: "absolute",
+              top: "110%",
+              zIndex: "10",
+              borderRadius: "10px",
+            }}
+          >
+            <ul className="mhy-select__container_li">
+              <li onClick={handleSort} id="0">
+                最早
+              </li>
+              <li onClick={handleSort} id="1">
+                最新
+              </li>
+              <li onClick={handleSort} id="2">
+                熱門
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
+
       {postData &&
         postData.reply.map((data) => {
           if (!data.user)

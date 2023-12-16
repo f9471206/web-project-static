@@ -3,6 +3,11 @@
   flex-direction: row;
   width: 85%;
   position: relative;
+  background-color: #dadada;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 20px;
 
   .reply_left {
     min-width: 75px;
@@ -105,12 +110,13 @@
   margin: 0;
   transition: 0.25s all ease;
   padding: 0.5rem;
-  background-color: rgb(62, 110, 255);
+  background-color: rgb(46, 87, 211);
   color: white;
   border-radius: 10px;
   box-shadow: 0 0 8px black;
+  color: #ddd;
   :hover {
-    background-color: rgb(120, 154, 255);
+    background-color: rgb(64, 112, 255);
   }
   li {
     border-radius: 10px;

@@ -76,7 +76,7 @@ const PostnewComponent = ({ result, setResult }) => {
   };
 
   return (
-    <div>
+    <div className="postNew-bg">
       {!AuthService.getCurrentUser() && (
         <div
           onInput={handleContent}
@@ -139,7 +139,6 @@ const PostnewComponent = ({ result, setResult }) => {
           )}
         </div>
       </div>
-      <hr />
     </div>
   );
 };
