@@ -180,7 +180,7 @@ const ReplysComponent = ({ newReply }) => {
     }
   }, [newReply]);
 
-  if (!postData || timeDelay) return <HomeLoadingConponent />;
+  // if (!postData || timeDelay) return <HomeLoadingConponent />;
 
   return (
     <div>
@@ -205,78 +205,81 @@ const ReplysComponent = ({ newReply }) => {
           <h4 style={{ textAlign: "center", color: "grey" }}>暫時還沒有留言</h4>
         </div>
       )}
-
-      <div style={{ position: "relative", padding: "0.5rem 0.25rem" }}>
-        <div
-          onClick={() => {
-            if (replysSort) {
-              document.getElementById("myIcon").style.transform =
-                "rotate(0deg)";
-              setReplysSort(false);
-            } else {
-              document.getElementById("myIcon").style.transform =
-                "rotate(180deg)";
-              setReplysSort(true);
-            }
-          }}
-          className="my-select__container"
-          style={{
-            paddingRight: "0.25rem",
-            display: "flex",
-            alignItems: "center",
-            width: "fit-content",
-          }}
-        >
-          <span
+      {postData && postData.reply != "" && (
+        <div style={{ position: "relative", padding: "0.5rem 0.25rem" }}>
+          <div
+            onClick={() => {
+              if (replysSort) {
+                document.getElementById("myIcon").style.transform =
+                  "rotate(0deg)";
+                setReplysSort(false);
+              } else {
+                document.getElementById("myIcon").style.transform =
+                  "rotate(180deg)";
+                setReplysSort(true);
+              }
+            }}
+            className="my-select__container"
             style={{
-              fontSize: "1.5rem",
-              padding: " 0 0.25rem",
-              userSelect: "none",
+              paddingRight: "0.25rem",
+              display: "flex",
+              alignItems: "center",
+              width: "fit-content",
             }}
           >
-            {!sort_ID && "最早"}
-            {sort_ID && sort_ID == 0 && "最早"}
-            {sort_ID && sort_ID == 1 && "最新"}
-            {sort_ID && sort_ID == 2 && "熱門"}
-          </span>
-          <i
-            id="myIcon"
-            style={{ paddingBottom: "12px", fontSize: "1.5rem" }}
-            className="fa-solid fa-sort-down myIcon"
-          ></i>
-          <div
-            style={{
-              position: "absolute",
-              top: "110%",
-              backgroundColor: "red",
-              zIndex: "10",
-            }}
-          ></div>
-        </div>
-        {replysSort && (
-          <div
-            style={{
-              position: "absolute",
-              top: "110%",
-              zIndex: "10",
-              borderRadius: "10px",
-            }}
-          >
-            <ul className="mhy-select__container_li">
-              <li onClick={handleSort} id="0">
-                最早
-              </li>
-              <li onClick={handleSort} id="1">
-                最新
-              </li>
-              <li onClick={handleSort} id="2">
-                熱門
-              </li>
-            </ul>
+            <span
+              style={{
+                fontSize: "1.5rem",
+                padding: " 0 0.25rem",
+                userSelect: "none",
+              }}
+            >
+              {!sort_ID && "最早"}
+              {sort_ID && sort_ID == 0 && "最早"}
+              {sort_ID && sort_ID == 1 && "最新"}
+              {sort_ID && sort_ID == 2 && "熱門"}
+            </span>
+            <i
+              id="myIcon"
+              style={{ paddingBottom: "12px", fontSize: "1.5rem" }}
+              className="fa-solid fa-sort-down myIcon"
+            ></i>
+            <div
+              style={{
+                position: "absolute",
+                top: "110%",
+                backgroundColor: "red",
+                zIndex: "10",
+              }}
+            ></div>
           </div>
-        )}
-      </div>
+          {replysSort && (
+            <div
+              style={{
+                position: "absolute",
+                top: "110%",
+                zIndex: "10",
+                borderRadius: "10px",
+              }}
+            >
+              <ul className="mhy-select__container_li">
+                <li onClick={handleSort} id="0">
+                  最早
+                </li>
+                <li onClick={handleSort} id="1">
+                  最新
+                </li>
+                <li onClick={handleSort} id="2">
+                  熱門
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
 
+      {timeDelay && <HomeLoadingConponent />}
+      {!postData && <HomeLoadingConponent />}
       {postData &&
         postData.reply.map((data) => {
           if (!data.user)
