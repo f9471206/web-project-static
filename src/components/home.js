@@ -152,7 +152,6 @@ const Home = () => {
   return (
     <div className="container py-4 home_main">
       <PostnewComponent result={result} setResult={setResult} />
-
       {/* 文章排序 */}
       <div
         style={{

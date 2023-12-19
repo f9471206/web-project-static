@@ -47,8 +47,20 @@ const LoginComponent = ({ _id, set_id, setLoginModal, setRegisterModal }) => {
   };
 
   return (
-    <div className="login_bg">
-      <div className="login_main">
+    <div
+      onClick={() => {
+        //點選背景關閉
+        setLoginModal(false);
+      }}
+      className="login_bg"
+    >
+      <div
+        onClick={(e) => {
+          //防止點選背景event擴散
+          e.stopPropagation();
+        }}
+        className="login_main"
+      >
         <div className="form-group">
           <button
             onClick={() => {

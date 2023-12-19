@@ -39,8 +39,20 @@ const RegisterComponent = ({ setRegisterModal, setLoginModal }) => {
   };
 
   return (
-    <div className="login_bg">
-      <div className="register_main">
+    <div
+      onClick={() => {
+        //點選背景關閉
+        setRegisterModal(false);
+      }}
+      className="login_bg"
+    >
+      <div
+        onClick={(e) => {
+          //防止點選背景event擴散
+          e.stopPropagation();
+        }}
+        className="register_main"
+      >
         <div className="form-group">
           <h1 className="text-center pb-3">註冊</h1>
 

@@ -63,13 +63,16 @@ const EditprofileComponent = () => {
       UserProfile.editProfileAndPhoto(_id, inputUsername, image)
         .then((d) => {
           if (d.data.message == "success") {
+            let obj = JSON.parse(localStorage.getItem("user"));
+            obj.user.photo = image;
+            localStorage.setItem("user", JSON.stringify(obj));
             window.alert("編輯成功");
             navigate("/profile/" + _id);
           }
         })
         .catch((err) => {
+          setSubLoading(false);
           window.alert("失敗\n請使用較小的圖片");
-          console.log(err);
         });
     }
   };

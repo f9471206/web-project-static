@@ -115,7 +115,14 @@ const NavComponent = ({
                 </div>
               </Link>
             )}
-            {_id && (
+            {_id && AuthService.getCurrentUser().user.photo == undefined && (
+              <Link className="nav-link ms-auto userPhoto" to="">
+                <div onMouseEnter={handleUserIcon} className="nav-user ">
+                  <i className="fa-regular fa-user"></i>
+                </div>
+              </Link>
+            )}
+            {_id && AuthService.getCurrentUser().user.photo != undefined && (
               <Link className="nav-link ms-auto userPhoto" to="#">
                 <div onMouseEnter={handleUserIcon} className="nav-user">
                   <img src={AuthService.getCurrentUser().user.photo} alt="" />
