@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import { useEffect, useState } from "react";
+import authService from "../services/auth.service";
 
 const NavComponent = ({
   _id,
@@ -40,11 +41,14 @@ const NavComponent = ({
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 100) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+      window.addEventListener("click", () => {
+        setUserTouch(false);
+      });
     });
   });
 
@@ -109,23 +113,38 @@ const NavComponent = ({
               )}
             </ul>
             {!_id && (
-              <Link className="nav-link ms-auto userPhoto" to="">
-                <div onMouseEnter={handleUserIcon} className="nav-user ">
+              <Link
+                onMouseEnter={handleUserIcon}
+                className="nav-link ms-auto userPhoto"
+                to=""
+              >
+                <div className="nav-user ">
                   <i className="fa-regular fa-user"></i>
                 </div>
               </Link>
             )}
             {_id && AuthService.getCurrentUser().user.photo == undefined && (
-              <Link className="nav-link ms-auto userPhoto" to="">
-                <div onMouseEnter={handleUserIcon} className="nav-user ">
+              <Link
+                onMouseEnter={handleUserIcon}
+                className="nav-link ms-auto userPhoto"
+                to=""
+              >
+                <div className="nav-user ">
                   <i className="fa-regular fa-user"></i>
                 </div>
               </Link>
             )}
             {_id && AuthService.getCurrentUser().user.photo != undefined && (
-              <Link className="nav-link ms-auto userPhoto" to="#">
-                <div onMouseEnter={handleUserIcon} className="nav-user">
+              <Link
+                onMouseEnter={handleUserIcon}
+                className="nav-link ms-auto userPhoto"
+                to="#"
+              >
+                <div className="nav-user">
                   <img src={AuthService.getCurrentUser().user.photo} alt="" />
+                </div>
+                <div className="nav_username">
+                  <span>{authService.getCurrentUser().user.username}</span>
                 </div>
               </Link>
             )}
@@ -135,7 +154,12 @@ const NavComponent = ({
       {userTouch && (
         <div
           onMouseLeave={() => {
+            //離開後關閉下彈
             setUserTouch(false);
+          }}
+          onClick={(e) => {
+            //防止 userTouch 的擴散
+            e.stopPropagation();
           }}
           className="myShowUser"
         >
@@ -152,7 +176,13 @@ const NavComponent = ({
             </Link>
           )}
           {_id && (
-            <Link className="nav-link" to={`/profile/${_id}`}>
+            <Link
+              onClick={() => {
+                setUserTouch(false);
+              }}
+              className="nav-link"
+              to={`/profile/${_id}`}
+            >
               <i className="fa-regular fa-address-card"></i>
               個人頁面
             </Link>

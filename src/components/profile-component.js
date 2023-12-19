@@ -45,8 +45,8 @@ const ProfileComponent = ({ user_id, setuser_id }) => {
                   {!data.photo && <img src={defaulephoto} alt="" />}
                   {data.photo && <img src={data.photo} alt="" />}
                 </div>
-                <h2>{data.username}</h2>
-                <h4>{format(new Date(data.date), "yyyy-MM-dd")}</h4>
+                <h3>名稱：{data.username}</h3>
+                <h3>註冊日期：{format(new Date(data.date), "yyyy-MM-dd")}</h3>
                 <button onClick={handleEdite} className="profile_button">
                   編輯個人資料
                 </button>

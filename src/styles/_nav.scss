@@ -11,6 +11,15 @@
     color: white;
   }
 }
+.userPhoto {
+  display: flex;
+  align-items: center;
+  .nav_username {
+    font-size: 1.5rem;
+    padding-left: 1.25rem;
+    font-weight: bold;
+  }
+}
 .userPhoto div {
   display: flex;
   overflow: hidden;
