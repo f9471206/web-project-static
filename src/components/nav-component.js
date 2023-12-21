@@ -59,7 +59,7 @@ const NavComponent = ({
           scrolled ? "scrolled" : ""
         } navbar navbar-expand-lg navbar-light fs-5`}
       >
-        <div className="container-fluid me-5">
+        <div className="container-fluid ">
           <button
             className="navbar-toggler"
             type="button"
@@ -71,6 +71,45 @@ const NavComponent = ({
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+
+          <div style={{ border: "none" }} className="navbar-toggler">
+            {!_id && (
+              <Link
+                onMouseEnter={handleUserIcon}
+                className="nav-link ms-auto userPhoto"
+                to=""
+                style={{ display: "flex" }}
+              >
+                <div className="nav-user ">
+                  <i className="fa-regular fa-user"></i>
+                </div>
+              </Link>
+            )}
+            {_id && AuthService.getCurrentUser().user.photo == undefined && (
+              <Link
+                onMouseEnter={handleUserIcon}
+                className="nav-link ms-auto userPhoto"
+                style={{ display: "flex" }}
+              >
+                <div className="nav-user ">
+                  <i className="fa-regular fa-user"></i>
+                </div>
+              </Link>
+            )}
+            {_id && AuthService.getCurrentUser().user.photo != undefined && (
+              <Link
+                onMouseEnter={handleUserIcon}
+                className="nav-link ms-auto userPhoto"
+                to="#"
+                style={{ display: "flex" }}
+              >
+                <div className="nav-user">
+                  <img src={AuthService.getCurrentUser().user.photo} alt="" />
+                </div>
+              </Link>
+            )}
+          </div>
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -121,6 +160,7 @@ const NavComponent = ({
                 <div className="nav-user ">
                   <i className="fa-regular fa-user"></i>
                 </div>
+                <div className="nav_username"></div>
               </Link>
             )}
             {_id && AuthService.getCurrentUser().user.photo == undefined && (
@@ -132,6 +172,9 @@ const NavComponent = ({
                 <div className="nav-user ">
                   <i className="fa-regular fa-user"></i>
                 </div>
+                <div className="nav_username">
+                  <span>{authService.getCurrentUser().user.username}</span>
+                </div>{" "}
               </Link>
             )}
             {_id && AuthService.getCurrentUser().user.photo != undefined && (

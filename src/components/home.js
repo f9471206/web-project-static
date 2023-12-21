@@ -10,6 +10,8 @@ import messageSvg from "../image/message/message.svg"; //回復icon
 import HomeService from "../services/home.service";
 import PostnewComponent from "./postnew-component";
 import UserPostService from "../services/userpost.service";
+import UserDataConponent from "./userData-conponent";
+import { set } from "date-fns";
 
 const Home = () => {
   const [sortID, setSortID] = useState(0);
@@ -139,6 +141,21 @@ const Home = () => {
     setCheckPostID(""); //按下編輯後 關掉(...)的延伸div
   };
 
+  //點集用戶頭像彈出資訊
+  const [userData, setUserData] = useState(false);
+  const [userData_ID, setUserData_ID] = useState("");
+  const [userDataCheckID, setUserDataCheckID] = useState("");
+  const handleUserData = (e) => {
+    e.stopPropagation();
+    setUserDataCheckID(e.target.closest(".one_post").id);
+    setUserData_ID(e.target.closest(".user_photo").id);
+    if (userData) {
+      setUserData(false);
+    } else {
+      setUserData(true);
+    }
+  };
+
   useEffect(() => {
     HomeService.home().then((data) => {
       setAllPostData(data.data);
@@ -256,10 +273,18 @@ const Home = () => {
               className="one_post"
             >
               <div className="post_card">
-                <div className="user_photo">
+                <div
+                  id={data.author._id}
+                  onClick={handleUserData}
+                  className="user_photo"
+                >
                   {!data.author.photo && <img src={defaulephoto} alt="" />}
                   {data.author.photo && <img src={data.author.photo} alt="" />}
                 </div>
+                {/* 用戶資料彈出 */}
+                {userData && data._id == userDataCheckID && (
+                  <UserDataConponent _id={userData_ID} />
+                )}
                 <div className="user_info">
                   <h2 className="post_name">
                     {data.author.username && data.author.username}

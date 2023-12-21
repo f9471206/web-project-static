@@ -11,6 +11,10 @@ class HomeService {
   getOnePost(_id) {
     return axios.get(API_URL + _id);
   }
+
+  getUserData(_id) {
+    return axios.get(API_URL + "userData/" + _id);
+  }
 }
 const homeService = new HomeService();
 export default homeService;

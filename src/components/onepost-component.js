@@ -11,6 +11,7 @@ import AuthService from "../services/auth.service";
 import UserPostService from "../services/userpost.service";
 import messageSvg from "../image/message/message.svg"; //回復icon
 import defaulephoto from "../image/user_photo/userdef.svg";
+import UserDataConponent from "./userData-conponent";
 
 function OnepostComponent() {
   let [user_id, setUser_id] = useState(""); //登入後的ID
@@ -69,6 +70,18 @@ function OnepostComponent() {
     }
   };
 
+  //用戶資料
+  const [userData, setUserData] = useState(false);
+  const [userData_ID, setUserData_ID] = useState("");
+  const handleUserData = (e) => {
+    if (userData) {
+      setUserData(false);
+      return;
+    }
+    setUserData_ID(e.target.closest(".user_photo").id);
+    setUserData(true);
+  };
+
   useEffect(() => {
     HomeService.getOnePost(_id)
       .then((data) => {
@@ -84,7 +97,7 @@ function OnepostComponent() {
   }, [newReply]);
   if (!postData) return <HomeLoadingConponent />;
   return (
-    <div className="container py-4 home_main">
+    <div className="container py-5 home_main">
       <PostEditComponent
         //編輯頁面 modal
         openModal={openModal}
@@ -100,11 +113,16 @@ function OnepostComponent() {
       {postData && (
         <div className="one_post_detail">
           <div className="post_card">
-            <div className="user_photo">
+            <div
+              id={postData.author._id}
+              onClick={handleUserData}
+              className="user_photo"
+            >
               {!postData.author.photo && <img src={defaulephoto} alt="" />}
               {postData.author.photo && (
                 <img src={postData.author.photo} alt="" />
               )}
+              {userData && <UserDataConponent _id={userData_ID} />}
             </div>
             <div className="user_info">
               <h2 className="post_name">

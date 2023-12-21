@@ -39,11 +39,19 @@ const ReplyComponent = ({ _id, setNewReply }) => {
         <div className="reply_left">
           {AuthService.getCurrentUser() &&
             !AuthService.getCurrentUser().user.photo && (
-              <img src={DefaultPhoto} alt="" />
+              <img
+                style={{ cursor: "default", opacity: "1" }}
+                src={DefaultPhoto}
+                alt=""
+              />
             )}
           {AuthService.getCurrentUser() &&
             AuthService.getCurrentUser().user.photo != "" && (
-              <img src={AuthService.getCurrentUser().user.photo} alt="" />
+              <img
+                style={{ cursor: "default", opacity: "1" }}
+                src={AuthService.getCurrentUser().user.photo}
+                alt=""
+              />
             )}
         </div>
         <div className="reply_right">

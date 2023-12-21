@@ -7,6 +7,7 @@ import defaulephoto from "../image/user_photo/userdef.svg";
 import message from "../image/message/comment.svg";
 import { useParams } from "react-router-dom";
 import HomeLoadingConponent from "./homeLoading-conponent";
+import UserDataConponent from "./userData-conponent";
 
 const ReplysComponent = ({ newReply }) => {
   let [sort_ID, setSortID] = useState("");
@@ -165,6 +166,20 @@ const ReplysComponent = ({ newReply }) => {
         console.log(err);
         setLoadingBtn(false);
       });
+  };
+
+  //userData Event
+  const [userData, setUserData] = useState(false);
+  const [user_ID, setUser_ID] = useState("");
+  const [checkUser_ID, setCheckUser_ID] = useState("");
+  const handleUserData = (e) => {
+    setCheckUser_ID(e.target.closest(".reply_main").id);
+    setUser_ID(e.target.parentElement.id);
+    if (userData) {
+      setUserData(false);
+      return;
+    }
+    setUserData(true);
   };
 
   useEffect(() => {
@@ -330,11 +345,18 @@ const ReplysComponent = ({ newReply }) => {
               </div>
             );
           return (
-            <div key={data._id} className="reply_main">
+            <div id={data._id} key={data._id} className="reply_main">
               <div className="reply_left">
-                <div className="reply_photo">
+                <div
+                  id={data.user._id}
+                  onClick={handleUserData}
+                  className="reply_photo"
+                >
                   {!data.user.photo && <img src={defaulephoto} alt="" />}
                   {data.user.photo && <img src={data.user.photo} alt="" />}
+                  {userData && data._id == checkUser_ID && (
+                    <UserDataConponent _id={user_ID} />
+                  )}
                 </div>
               </div>
               <div className="replys_rigth">
