@@ -1,6 +1,6 @@
 import axios from "axios";
-// const API_URL = "http://localhost:8080/api/user";
-const API_URL = "https://web-project-service.onrender.com/api/user";
+const API_URL = "http://localhost:8080/api/user";
+// const API_URL = "https://web-project-service.onrender.com/api/user";
 
 class AuthService {
   login(email, password) {
@@ -14,6 +14,7 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
+  //註冊
   register(username, email, password) {
     return axios.post(API_URL + "/register", {
       username,

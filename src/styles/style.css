@@ -209,7 +209,7 @@ body {
 }
 .userDataCon .user_loading {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 .userDataCon .user_loading p {
   margin: 0 0.5rem 0 0;
@@ -1503,5 +1503,170 @@ body {
   }
   .userPhoto {
     display: none;
+  }
+}
+.manag-emember {
+  position: relative;
+}
+.manag-emember .table_m .table_m_tr {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.1rem;
+}
+.manag-emember .table_m .table_m_tr:hover td {
+  background-color: #d6d6d6;
+  cursor: pointer;
+}
+.manag-emember .table_m .photo {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.manag-emember .table_m .photo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.manag-emember .userContent {
+  padding: 0.75rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 50%;
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.manag-emember .userContent .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.manag-emember .userContent .close:hover {
+  transform: rotate(90deg);
+}
+.manag-emember .userContent .close i {
+  font-size: 2rem;
+}
+.manag-emember .userContent .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.manag-emember .userContent .title .img {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.manag-emember .userContent .title .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.manag-emember .userContent .title .name {
+  flex: 1 1 auto;
+}
+.manag-emember .userContent .title .email {
+  flex: 1 1 auto;
+}
+.manag-emember .userContent .title .role {
+  flex: 1 1 auto;
+}
+.manag-emember .userContent .title .date {
+  flex: 1 1 auto;
+}
+.manag-emember .userContent .title p {
+  margin: 0;
+  padding: 0 0.5rem;
+}
+.manag-emember .postContent {
+  display: flex;
+  flex-direction: row;
+}
+.manag-emember .postContent div {
+  text-align: center;
+  padding: 0 0.25rem;
+}
+.manag-emember .postContent .number {
+  flex: 1 1 5px;
+}
+.manag-emember .postContent .postDate {
+  flex: 1 1 200px;
+}
+.manag-emember .postContent .postContent {
+  flex: 3 1 200px;
+  text-align: left;
+}
+.manag-emember .postContent .post_replys {
+  flex: 1 1 50px;
+}
+.manag-emember .postContent .post_likes {
+  flex: 1 1 50px;
+}
+.manag-emember .postContent p {
+  font-size: 1.1rem;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+.manag-emember .no-post-data {
+  text-align: center;
+}
+.manag-emember .active {
+  transition: all 0.2s ease-in;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.manag-emember .active:hover {
+  background-color: #c6c6c6;
+}
+.manag-emember .preloader > div {
+  margin: 2px;
+  background-color: #e6e6e6;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: stretchdelay 0.7s infinite ease-in-out;
+}
+.manag-emember .preloader .circ1 {
+  animation-delay: 0;
+}
+.manag-emember .preloader .circ2 {
+  animation-delay: 0.1s;
+}
+.manag-emember .preloader .circ3 {
+  animation-delay: 0.2s;
+}
+.manag-emember .preloader .circ4 {
+  animation-delay: 0.3s;
+}
+.manag-emember .button_cursor_none {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: rgb(177, 177, 177);
+  cursor: default;
+  margin: 0;
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: translateY(0px);
+  }
+  20% {
+    transform: translateY(-8px);
   }
 }/*# sourceMappingURL=style.css.map */

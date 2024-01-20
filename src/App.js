@@ -6,6 +6,7 @@ import Home from "./components/home";
 import RegisterComponent from "./components/register-component";
 import OnepostComponent from "./components/onepost-component";
 import EditprofileComponent from "./components/editprofile-component";
+import ManagEmemberComponent from "./components/managEmember-component";
 import "./styles/style.css";
 import AuthService from "./services/auth.service";
 import WelcomepageComponent from "./components/welcomepage-component";
@@ -31,7 +32,7 @@ function App() {
           />
           <Route path="/profile/edit/:_id" element={<EditprofileComponent />} />
           <Route path="/home/:_id" element={<OnepostComponent />} />
-          {/* <Route path="/login" element={<Login _id={_id} set_id={set_id} />} /> */}
+          <Route path="/manage-member" element={<ManagEmemberComponent />} />
           <Route path="/register" element={<RegisterComponent />} />
         </Route>
       </Routes>

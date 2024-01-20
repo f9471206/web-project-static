@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
-import { set } from "date-fns";
 
 const RegisterComponent = ({ setRegisterModal, setLoginModal }) => {
   let [username, setUsername] = useState("");

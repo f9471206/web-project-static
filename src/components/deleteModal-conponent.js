@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import UserPostService from "../services/userpost.service";
-import { set } from "date-fns";
 
 const DeleteModal = ({
   openDeleteModal,

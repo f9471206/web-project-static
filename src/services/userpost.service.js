@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:8080/api/post/";
-const API_URL = "https://web-project-service.onrender.com/api/post/";
+const API_URL = "http://localhost:8080/api/post/";
+// const API_URL = "https://web-project-service.onrender.com/api/post/";
 
 class UserPostService {
   //只有文字的貼文

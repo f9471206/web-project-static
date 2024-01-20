@@ -1,6 +1,6 @@
 import axios from "axios";
-// const API_URL = "http://localhost:8080/api/user/profile/";
-const API_URL = "https://web-project-service.onrender.com/api/user/profile/";
+const API_URL = "http://localhost:8080/api/user/profile/";
+// const API_URL = "https://web-project-servcdccice.onrender.com/api/user/profile/";
 
 class UserProfile {
   //取得個人資料
@@ -73,6 +73,40 @@ class UserProfile {
         },
       }
     );
+  }
+
+  //管理員觀看會員
+  getManageMember() {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.post(
+      API_URL + "emember",
+      {},
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  }
+
+  //管理員觀看會員詳細資料
+  getManageMemberContent(_id) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.get(API_URL + "manag-emember/" + _id, {
+      headers: {
+        Authorization: token,
+      },
+    });
   }
 }
 

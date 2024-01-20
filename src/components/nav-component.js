@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import { useEffect, useState } from "react";
-import authService from "../services/auth.service";
 
 const NavComponent = ({
   _id,
@@ -173,7 +172,7 @@ const NavComponent = ({
                   <i className="fa-regular fa-user"></i>
                 </div>
                 <div className="nav_username">
-                  <span>{authService.getCurrentUser().user.username}</span>
+                  <span>{AuthService.getCurrentUser().user.username}</span>
                 </div>{" "}
               </Link>
             )}
@@ -187,7 +186,7 @@ const NavComponent = ({
                   <img src={AuthService.getCurrentUser().user.photo} alt="" />
                 </div>
                 <div className="nav_username">
-                  <span>{authService.getCurrentUser().user.username}</span>
+                  <span>{AuthService.getCurrentUser().user.username}</span>
                 </div>
               </Link>
             )}
@@ -228,6 +227,12 @@ const NavComponent = ({
             >
               <i className="fa-regular fa-address-card"></i>
               個人頁面
+            </Link>
+          )}
+          {_id && AuthService.getCurrentUser().user.role == "admin" && (
+            <Link to={`/manage-member`} className="nav-link">
+              <i className="fa-solid fa-user-tie"></i>
+              管理員
             </Link>
           )}
           {_id && (
