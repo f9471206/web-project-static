@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/home/";
-// const API_URL = "https://web-project-service.onrender.com/api/home/";
+// const API_URL = "http://localhost:8080/api/home/";
+const API_URL = "https://web-project-service.onrender.com/api/home/";
 
 class HomeService {
   home() {
