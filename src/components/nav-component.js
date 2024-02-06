@@ -154,7 +154,7 @@ const NavComponent = ({
               <Link
                 onMouseEnter={handleUserIcon}
                 className="nav-link ms-auto userPhoto"
-                to=""
+                to="#"
               >
                 <div className="nav-user ">
                   <i className="fa-regular fa-user"></i>
