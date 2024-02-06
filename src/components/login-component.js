@@ -30,8 +30,6 @@ const LoginComponent = ({ _id, set_id, setLoginModal, setRegisterModal }) => {
         set_id(AuthService.getCurrentUser().user._id);
       }
       setLoginLoading(false);
-      window.alert("登入成功。");
-      // nagivate("/");
       window.location.reload();
       setLoginModal(false);
     } catch (e) {
@@ -72,7 +70,9 @@ const LoginComponent = ({ _id, set_id, setLoginModal, setRegisterModal }) => {
           </button>
           <h1 className="text-center pb-3">登入</h1>
           {message && <div className="alert alert-danger">{message}</div>}
-          <label htmlFor="username">電子信箱：</label>
+          <label htmlFor="username">
+            電子信箱：(測試帳號：user1@gmail.com)
+          </label>
           <input
             onChange={handleEmail}
             type="text"
@@ -82,7 +82,7 @@ const LoginComponent = ({ _id, set_id, setLoginModal, setRegisterModal }) => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="password">密碼：</label>
+          <label htmlFor="password">密碼：(user1)</label>
           <input
             onChange={handlePassword}
             type="password"
