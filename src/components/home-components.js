@@ -15,12 +15,10 @@ import Badge from "react-bootstrap/Badge";
 
 const homeComponents = ({ data, setData }) => {
   const { _tag } = useParams();
+  let location = useLocation();
   const [refresh, setRefresh] = useState(false);
-
-  let location = useLocation().search;
-  let sort = queryString.parse(location);
-
   const [placeholder, setPlaceholder] = useState(false);
+  let sort = queryString.parse(location.search);
 
   useEffect(() => {
     if (data) return;

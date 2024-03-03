@@ -250,7 +250,6 @@ function ModalsHomeArtcleListReplysCompoments({
             </div>
           );
         })}
-      {console.log(data)}
       {data == "" && <div className="text-center p-5">暫時還沒有評論</div>}
       <ModalsLoginComponents
         show={modalLoginShow}
