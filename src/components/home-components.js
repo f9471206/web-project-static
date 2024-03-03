@@ -15,7 +15,6 @@ import Badge from "react-bootstrap/Badge";
 
 const homeComponents = ({ data, setData }) => {
   const { _tag } = useParams();
-
   const [refresh, setRefresh] = useState(false);
 
   let location = useLocation().search;
