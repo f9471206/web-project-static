@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import queryString from "query-string";
 
 function SortComponents({ setData }) {
@@ -39,6 +39,7 @@ function SortComponents({ setData }) {
   //下拉是選單title
   const [title, setTitle] = useState("最新文章");
 
+  const location = useLocation();
   const parsed = queryString.parse(location.search);
   useEffect(() => {
     if (parsed.sort) {

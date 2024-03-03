@@ -41,7 +41,7 @@ function TagComponents({ setData }) {
       text: "心情",
     },
   ];
-
+  const location = useLocation();
   const [parsed, setParsed] = useState({});
   useEffect(() => {
     setParsed(queryString.parse(location.search));
