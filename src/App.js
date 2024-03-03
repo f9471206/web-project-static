@@ -14,7 +14,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home data={data} setData={setData} />}></Route>
+          <Route
+            path="/"
+            element={<Home data={data} setData={setData} />}
+          ></Route>
           <Route
             path="/:_tag"
             element={<Home data={data} setData={setData} />}

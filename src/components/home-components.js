@@ -23,19 +23,19 @@ const homeComponents = ({ data, setData }) => {
 
   const [placeholder, setPlaceholder] = useState(false);
 
-  // useEffect(() => {
-  //   if (data) return;
-  //   setPlaceholder(true);
-  //   HomeService.home(_tag, sort)
-  //     .then((d) => {
-  //       setData(d.data);
-  //       setPlaceholder(false);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //       setPlaceholder(false);
-  //     });
-  // }, [_tag, location, refresh, data]);
+  useEffect(() => {
+    if (data) return;
+    setPlaceholder(true);
+    HomeService.home(_tag, sort)
+      .then((d) => {
+        setData(d.data);
+        setPlaceholder(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setPlaceholder(false);
+      });
+  }, [_tag, location, refresh, data]);
 
   return (
     <>
