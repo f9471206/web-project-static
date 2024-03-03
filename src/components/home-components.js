@@ -32,8 +32,8 @@ const homeComponents = ({ data, setData }) => {
         console.log(e);
         setPlaceholder(false);
       });
-  }, [_tag, location, refresh, data]);
-
+  }, []);
+  // _tag, location, refresh, data
   return (
     <>
       {_tag && (
