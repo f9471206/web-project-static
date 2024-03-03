@@ -24,7 +24,7 @@ function ProfileEditComponent(props) {
         setStore(true);
       })
       .catch((err) => {
-        setMsg(err.response.data);
+        console.log(err.response.data);
       });
   };
 
