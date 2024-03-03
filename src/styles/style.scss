@@ -1,27 +1,11 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+a {
+  text-decoration: none;
 }
-body {
-  font-family: "Noto Sans TC", sans-serif;
-  background-color: #c6c6c6;
-}
-@import "./home";
-@import "./profile";
-@import "./postnew";
-@import "./onepost";
-@import "./editprofile";
-@import "./postreply";
-@import "./replys";
-@import "./postedit";
-@import "./deletemodal";
-@import "./onepostdelete";
-@import "./userdelete";
-@import "./welcomepage";
-@import "./login";
-@import "./register";
-@import "./homeLoading";
-@import "./totop";
-@import "./nav";
-@import "./managemember";
+@import "./navbar_style";
+@import "./home_style";
+@import "./post_style";
+@import "./register_style";
+@import "./tweet-style";
+@import "./profile_style";
+@import "./MadalsUploadImage_style";
+@import "./replyTweet_style";

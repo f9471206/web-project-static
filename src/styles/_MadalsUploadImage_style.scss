@@ -1,0 +1,37 @@
+.uploadRow {
+  flex-wrap: nowrap;
+  transform: translateX(-100%);
+  transition: all 0.35s ease;
+  .uploadImg_pointer {
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .uploadImgInput {
+    height: 200px;
+  }
+
+  .back_right {
+    cursor: pointer;
+    position: absolute;
+    padding: 0.5rem;
+    right: 20px;
+    i {
+      font-size: 25px;
+    }
+  }
+  .back_left {
+    cursor: pointer;
+    position: absolute;
+    padding: 0.5rem;
+    left: 20px;
+    i {
+      font-size: 25px;
+    }
+  }
+}

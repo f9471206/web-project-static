@@ -1,0 +1,44 @@
+.user-bg-div {
+  height: 350px;
+}
+
+.user-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+.user-img-overlay {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  border-radius: 0;
+  .user-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  .user-conter {
+    text-align: start;
+  }
+}
+
+//編輯 profile modals
+.profile-edit-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  padding: 0;
+}
+
+//修改背景圖 modals
+.profile-edit-bg {
+  cursor: pointer;
+  width: 100px;
+  i {
+    font-size: 80px;
+  }
+}

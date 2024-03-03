@@ -1,0 +1,10 @@
+.register_Validate {
+  display: none;
+}
+input:invalid[focused="true"] {
+  box-shadow: none;
+  border-color: red;
+}
+input:invalid[focused="true"] ~ span {
+  display: block;
+}

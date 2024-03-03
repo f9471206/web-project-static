@@ -1,39 +1,39 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-// import Login from "./components/login-component";
-import ProfileComponent from "./components/profile-component";
-import Home from "./components/home";
-import RegisterComponent from "./components/register-component";
-import OnepostComponent from "./components/onepost-component";
-import EditprofileComponent from "./components/editprofile-component";
-import ManagEmemberComponent from "./components/managEmember-component";
+import Home from "./components/home-components";
+import PostComponent from "./components/post-component";
+import TweetComponents from "./components/tweet-components";
+import ProfileComponents from "./components/profile-components";
 import "./styles/style.css";
-import AuthService from "./services/auth.service";
-import WelcomepageComponent from "./components/welcomepage-component";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
-  let [_id, set_id] = useState(""); //用戶_ID
+  const [data, setData] = useState("");
 
-  useEffect(() => {
-    if (AuthService.getCurrentUser()) {
-      set_id(AuthService.getCurrentUser().user._id);
-    }
-  }, []);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout _id={_id} set_id={set_id} />}>
-          <Route path="/" element={<WelcomepageComponent />} />
-          <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home data={data} setData={setData} />}></Route>
           <Route
-            path="/profile/:_id"
-            element={<ProfileComponent user_id={_id} setuser_id={set_id} />}
-          />
-          <Route path="/profile/edit/:_id" element={<EditprofileComponent />} />
-          <Route path="/home/:_id" element={<OnepostComponent />} />
-          <Route path="/manage-member" element={<ManagEmemberComponent />} />
-          <Route path="/register" element={<RegisterComponent />} />
+            path="/:_tag"
+            element={<Home data={data} setData={setData} />}
+          ></Route>
+          {/* 個別文章 */}
+          <Route path="/post/:_id" element={<PostComponent />}></Route>
+          {/* 發表貼文 */}
+          <Route path="/tweet" element={<TweetComponents />}></Route>
+          {/* 編輯文章 */}
+          <Route path="/tweet-edit/:_id" element={<TweetComponents />}></Route>
+          {/* 個人資料 */}
+          <Route
+            path="/user-profile/:_id"
+            element={<ProfileComponents />}
+          ></Route>
+          <Route
+            path="/user-profile/:_id/:_replys"
+            element={<ProfileComponents />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
