@@ -239,14 +239,14 @@ function OffcanvasExample() {
           </Container>
           <ModalsLoginComponents
             show={modalLoginShow}
-            changemadals={setModalRegisterShow}
+            // changemadals={setModalRegisterShow}
             onHide={setModalLoginShow}
           />
 
           <ModalsRegisterComponents
             show={modalRegisterShow}
             onHide={setModalRegisterShow}
-            changemadals={setModalLoginShow}
+            // changemadals={setModalLoginShow}
           />
           <ModalsLogoutComponents
             show={modalLogoutShow}

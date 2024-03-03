@@ -99,8 +99,8 @@ const ModalsRegisterComponents = (props) => {
               {...input}
               value={values[input.name]}
               onChange={onChange}
-              isLoading={isLoading}
-              registerSuc={registerSuc}
+              // isLoading={isLoading}
+              // registerSuc={registerSuc}
             />
           ))}
 
@@ -153,7 +153,8 @@ const ModalsRegisterComponents = (props) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                props.onHide(false), props.changemadals(true);
+                props.onHide(false);
+                // props.changemadals(true);
               }}
             >
               已經有一個帳號了

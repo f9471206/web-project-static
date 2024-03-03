@@ -116,7 +116,7 @@ const ModalsLoginComponents = (props) => {
               onClick={(e) => {
                 e.preventDefault();
                 props.onHide(false);
-                props.changemadals(true);
+                // props.changemadals(true);
               }}
             >
               註冊帳號
