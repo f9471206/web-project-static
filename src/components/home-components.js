@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,7 +7,6 @@ import Button from "react-bootstrap/esm/Button";
 import HomeArticleComponents from "./home-article-components";
 import SortComponents from "./modals/sort-components";
 import TagComponents from "./modals/tag-components";
-import { useLocation, useParams } from "react-router-dom";
 import queryString from "query-string";
 import HomeService from "../services/home.service";
 import ModalsPlaceholderComponents from "./modals/modals-placeholder-components";
